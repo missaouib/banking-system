@@ -9,6 +9,7 @@ import com.ironhack.bankingsystem.utils.Money;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
@@ -39,7 +40,7 @@ public class Savings  extends Account {
         super(balance, primaryOwner, secondaryOwner, penaltyFee, Status.ACTIVE);
         this.secretKey = secretKey;
         setMinimumBalance(new BigDecimal(1000));
-        setInterestRate(new BigDecimal(0.0025));
+        setInterestRate(new BigDecimal(0.0025).setScale(4, RoundingMode.HALF_EVEN));
     }
 
     public String getSecretKey() {

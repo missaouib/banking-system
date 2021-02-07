@@ -36,6 +36,10 @@ public class Money {
         this(amount, USD, DEFAULT_ROUNDING);
     }
 
+    public Money() {
+        this.currency = Currency.getInstance("EUR");
+    }
+
     public BigDecimal increaseAmount(Money money) {
         setAmount(this.amount.add(money.amount));
         return this.amount;
