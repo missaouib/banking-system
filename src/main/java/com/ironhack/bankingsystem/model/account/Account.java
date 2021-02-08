@@ -31,11 +31,11 @@ public abstract class Account {
    public Account() {
    }
 
-   public Account(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, BigDecimal penaltyFee, Status status) {
+   public Account(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, Status status) {
       this.balance = balance;
       this.primaryOwner = primaryOwner;
       this.secondaryOwner = secondaryOwner;
-      this.penaltyFee = penaltyFee;
+      setPenaltyFee(new BigDecimal(40));
       this.creationDate = LocalDate.now();
       this.status = status;
    }

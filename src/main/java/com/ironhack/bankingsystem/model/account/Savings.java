@@ -29,15 +29,15 @@ public class Savings  extends Account {
         this.interestRate = interestRate;
     }
 
-    public Savings(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, BigDecimal penaltyFee, String secretKey, BigDecimal minimumBalance, BigDecimal interestRate) {
-        super(balance, primaryOwner, secondaryOwner, penaltyFee, Status.ACTIVE);
+    public Savings(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, String secretKey, BigDecimal minimumBalance, BigDecimal interestRate) {
+        super(balance, primaryOwner, secondaryOwner, Status.ACTIVE);
         this.secretKey = secretKey;
         setMinimumBalance(minimumBalance);
         setInterestRate(interestRate);
     }
 
-    public Savings(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, BigDecimal penaltyFee, String secretKey) {
-        super(balance, primaryOwner, secondaryOwner, penaltyFee, Status.ACTIVE);
+    public Savings(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, String secretKey) {
+        super(balance, primaryOwner, secondaryOwner,  Status.ACTIVE);
         this.secretKey = secretKey;
         setMinimumBalance(new BigDecimal(1000));
         setInterestRate(new BigDecimal(0.0025).setScale(4, RoundingMode.HALF_EVEN));
@@ -56,9 +56,6 @@ public class Savings  extends Account {
     }
 
     public void setMinimumBalance(BigDecimal minimumBalance) {
-        if (minimumBalance.compareTo(new BigDecimal(100)) < 0){
-            throw new IncorrectMinimumBalance();
-        }
         this.minimumBalance = minimumBalance;
     }
 
@@ -67,9 +64,6 @@ public class Savings  extends Account {
     }
 
     public void setInterestRate(BigDecimal interestRate) {
-        if (interestRate.compareTo(new BigDecimal(0.5))>0){
-            throw new IncorrectInterestRate();
-        }
         this.interestRate = interestRate;
     }
 }

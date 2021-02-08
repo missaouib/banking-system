@@ -12,9 +12,6 @@ public class SavingDTO {
     @NotNull(message = "the primaryOwnerId is required")
     private Integer primaryOwnerId;
     private Integer secondaryOwnerId;
-    @NotNull(message = "the penaltyFee is required")
-    @Min(value = 0,message = "should be greater than 0")
-    private BigDecimal penaltyFee;
     @NotEmpty(message = "the secretKey is required")
     private String secretKey;
     @Min(value = 100,message = "Minimum balance should be greater than 100")
@@ -22,11 +19,10 @@ public class SavingDTO {
     @DecimalMax(value = "0.50", message = "The interest rate should be less than 0.5")
     private BigDecimal interestRate;
 
-    public SavingDTO(@NotEmpty(message = "the balance is required") Money balance, @NotEmpty(message = "the primaryOwnerId is required") Integer primaryOwnerId, Integer secondaryOwnerId, @NotEmpty(message = "the penaltyFee is required") BigDecimal penaltyFee, @NotEmpty(message = "the secretKey is required") String secretKey, @NotEmpty(message = "the minimumBalance is required") BigDecimal minimumBalance, @NotEmpty(message = "the interestRate is required") BigDecimal interestRate) {
+    public SavingDTO(@NotEmpty(message = "the balance is required") Money balance, @NotEmpty(message = "the primaryOwnerId is required") Integer primaryOwnerId, Integer secondaryOwnerId, @NotEmpty(message = "the secretKey is required") String secretKey, @NotEmpty(message = "the minimumBalance is required") BigDecimal minimumBalance, @NotEmpty(message = "the interestRate is required") BigDecimal interestRate) {
         this.balance = balance;
         this.primaryOwnerId = primaryOwnerId;
         this.secondaryOwnerId = secondaryOwnerId;
-        this.penaltyFee = penaltyFee;
         this.secretKey = secretKey;
         this.minimumBalance = minimumBalance;
         this.interestRate = interestRate;
@@ -54,14 +50,6 @@ public class SavingDTO {
 
     public void setSecondaryOwnerId(Integer secondaryOwnerId) {
         this.secondaryOwnerId = secondaryOwnerId;
-    }
-
-    public BigDecimal getPenaltyFee() {
-        return penaltyFee;
-    }
-
-    public void setPenaltyFee(BigDecimal penaltyFee) {
-        this.penaltyFee = penaltyFee;
     }
 
     public String getSecretKey() {

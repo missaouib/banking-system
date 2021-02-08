@@ -25,15 +25,15 @@ public class Checking extends Account{
         this.monthlyMaintenanceFee = monthlyMaintenanceFee;
     }
 
-    public Checking(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, BigDecimal penaltyFee, String secretKey, BigDecimal minimumBalance, BigDecimal monthlyMaintenanceFee) {
-        super(balance, primaryOwner, secondaryOwner, penaltyFee, Status.ACTIVE);
+    public Checking(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, String secretKey, BigDecimal minimumBalance, BigDecimal monthlyMaintenanceFee) {
+        super(balance, primaryOwner, secondaryOwner, Status.ACTIVE);
         this.secretKey = secretKey;
         this.minimumBalance = minimumBalance;
         this.monthlyMaintenanceFee = monthlyMaintenanceFee;
     }
 
-    public Checking(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, BigDecimal penaltyFee, String secretKey) {
-        super(balance, primaryOwner, secondaryOwner, penaltyFee, Status.ACTIVE);
+    public Checking(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, String secretKey) {
+        super(balance, primaryOwner, secondaryOwner, Status.ACTIVE);
         this.secretKey = secretKey;
         setMinimumBalance(new BigDecimal(250));
         setMonthlyMaintenanceFee(new BigDecimal(12));

@@ -28,14 +28,14 @@ public class CreditCard  extends Account {
         this.interestRate = interestRate;
     }
 
-    public CreditCard(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, BigDecimal penaltyFee, BigDecimal creditLimit, BigDecimal interestRate) {
-        super(balance, primaryOwner, secondaryOwner, penaltyFee, Status.ACTIVE);
+    public CreditCard(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, BigDecimal creditLimit, BigDecimal interestRate) {
+        super(balance, primaryOwner, secondaryOwner, Status.ACTIVE);
         this.creditLimit = creditLimit;
         this.interestRate = interestRate;
     }
 
-    public CreditCard(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, BigDecimal penaltyFee) {
-        super(balance, primaryOwner, secondaryOwner, penaltyFee, Status.ACTIVE);
+    public CreditCard(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner) {
+        super(balance, primaryOwner, secondaryOwner, Status.ACTIVE);
         setCreditLimit(new BigDecimal(100));
         setInterestRate(new BigDecimal(0.2).setScale(1, RoundingMode.HALF_EVEN));
     }

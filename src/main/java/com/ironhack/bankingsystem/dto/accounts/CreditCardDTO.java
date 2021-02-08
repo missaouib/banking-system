@@ -12,9 +12,6 @@ public class CreditCardDTO {
     @NotNull(message = "the primaryOwnerId is required")
     private Integer primaryOwnerId;
     private Integer secondaryOwnerId;
-    @NotNull(message = "the penaltyFee is required")
-    @Min(value = 0,message = "should be greater than 0")
-    private BigDecimal penaltyFee;
     @Min(value = 100,message = "Credit Limit should be greater than 100")
     @Max(value = 100000, message = "Credit Limit should be less than 100000")
     private BigDecimal creditLimit;
@@ -23,11 +20,10 @@ public class CreditCardDTO {
     private BigDecimal interestRate;
 
 
-    public CreditCardDTO(@NotNull(message = "the balance is required") Money balance, @NotNull(message = "the primaryOwnerId is required") Integer primaryOwnerId, Integer secondaryOwnerId, @NotNull(message = "the penaltyFee is required") BigDecimal penaltyFee, @Min(value = 100, message = "Credit Limit should be greater than 100") @Max(value = 100000, message = "Credit Limit should be less than 100000") BigDecimal creditLimit, @DecimalMin(value = "0.1", message = "Interest Rate should be greater than 0.1") @DecimalMax(value = "0.2", message = "Interest Rate should be lees than 0.2") BigDecimal interestRate) {
+    public CreditCardDTO(@NotNull(message = "the balance is required") Money balance, @NotNull(message = "the primaryOwnerId is required") Integer primaryOwnerId, Integer secondaryOwnerId, @Min(value = 100, message = "Credit Limit should be greater than 100") @Max(value = 100000, message = "Credit Limit should be less than 100000") BigDecimal creditLimit, @DecimalMin(value = "0.1", message = "Interest Rate should be greater than 0.1") @DecimalMax(value = "0.2", message = "Interest Rate should be lees than 0.2") BigDecimal interestRate) {
         this.balance = balance;
         this.primaryOwnerId = primaryOwnerId;
         this.secondaryOwnerId = secondaryOwnerId;
-        this.penaltyFee = penaltyFee;
         this.creditLimit = creditLimit;
         this.interestRate = interestRate;
     }
@@ -56,13 +52,6 @@ public class CreditCardDTO {
         this.secondaryOwnerId = secondaryOwnerId;
     }
 
-    public BigDecimal getPenaltyFee() {
-        return penaltyFee;
-    }
-
-    public void setPenaltyFee(BigDecimal penaltyFee) {
-        this.penaltyFee = penaltyFee;
-    }
 
     public BigDecimal getCreditLimit() {
         return creditLimit;

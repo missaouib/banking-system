@@ -15,7 +15,7 @@ import com.ironhack.bankingsystem.repository.user.AccountHolderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+
 
 @Service
 public class AdminService {
@@ -41,7 +41,7 @@ public class AdminService {
              secondaryOwner = accountHolderRepository.findById(savingdto.getSecondaryOwnerId())
                      .orElseThrow(NoPresentAccountHolder::new);
         }
-        Savings savings = new Savings(savingdto.getBalance(),primaryOwner, secondaryOwner,savingdto.getPenaltyFee(),savingdto.getSecretKey());
+        Savings savings = new Savings(savingdto.getBalance(),primaryOwner, secondaryOwner,savingdto.getSecretKey());
 
         if(savingdto.getMinimumBalance() != null){
             savings.setMinimumBalance(savingdto.getMinimumBalance());
@@ -63,7 +63,7 @@ public class AdminService {
                         .orElseThrow(NoPresentAccountHolder::new);
             }
 
-        CreditCard creditCard = new CreditCard(creditCarddto.getBalance(),primaryOwner,secondaryOwner,creditCarddto.getPenaltyFee());
+        CreditCard creditCard = new CreditCard(creditCarddto.getBalance(),primaryOwner,secondaryOwner);
 
             if(creditCarddto.getCreditLimit() != null){
                 creditCard.setCreditLimit(creditCarddto.getCreditLimit());
@@ -86,7 +86,7 @@ public class AdminService {
             }
 
             if (primaryOwner.isOlderThan24()){
-                Checking checking = new Checking(checkingdto.getBalance(),primaryOwner,secondaryOwner,checkingdto.getPenaltyFee(),checkingdto.getSecretKey());
+                Checking checking = new Checking(checkingdto.getBalance(),primaryOwner,secondaryOwner,checkingdto.getSecretKey());
 
                 if(checkingdto.getMinimumBalance() != null){
                     checking.setMinimumBalance(checkingdto.getMinimumBalance());
@@ -96,7 +96,7 @@ public class AdminService {
                 }
                 return checkingRepository.save(checking);
             } else {
-                StudentChecking studentChecking = new StudentChecking(checkingdto.getBalance(),primaryOwner,secondaryOwner,checkingdto.getPenaltyFee(),checkingdto.getSecretKey());
+                StudentChecking studentChecking = new StudentChecking(checkingdto.getBalance(),primaryOwner,secondaryOwner,checkingdto.getSecretKey());
                 return studentCheckingRepository.save(studentChecking);
             }
         }
