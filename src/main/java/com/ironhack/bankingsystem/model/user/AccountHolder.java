@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 @Entity
@@ -39,6 +40,14 @@ public class AccountHolder extends User{
         this.address = address;
         this.mailingAddress = mailingAddress;
     }
+
+    public boolean isOlderThan24(){
+        Period period = Period.between(dateOfBirth,LocalDate.now());
+        int age = period.getYears();
+        return age > 24;
+    }
+
+
 
     public LocalDate getDateOfBirth() {
         return dateOfBirth;

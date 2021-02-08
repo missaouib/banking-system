@@ -6,6 +6,7 @@ import com.ironhack.bankingsystem.utils.Money;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -23,6 +24,7 @@ public abstract class Account {
    @JoinColumn(name="secondaryOwner_id")
    private AccountHolder secondaryOwner;
    private BigDecimal penaltyFee;
+   private LocalDate creationDate;
    @Enumerated(EnumType.STRING)
    private Status status;
 
@@ -34,6 +36,7 @@ public abstract class Account {
       this.primaryOwner = primaryOwner;
       this.secondaryOwner = secondaryOwner;
       this.penaltyFee = penaltyFee;
+      this.creationDate = LocalDate.now();
       this.status = status;
    }
 

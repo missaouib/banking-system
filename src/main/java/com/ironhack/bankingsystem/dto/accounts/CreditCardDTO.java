@@ -5,7 +5,7 @@ import com.ironhack.bankingsystem.utils.Money;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
-public class SavingDTO {
+public class CreditCardDTO {
 
     @NotNull(message = "the balance is required")
     private Money balance;
@@ -15,20 +15,20 @@ public class SavingDTO {
     @NotNull(message = "the penaltyFee is required")
     @Min(value = 0,message = "should be greater than 0")
     private BigDecimal penaltyFee;
-    @NotEmpty(message = "the secretKey is required")
-    private String secretKey;
-    @Min(value = 100,message = "Minimum balance should be greater than 100")
-    private BigDecimal minimumBalance;
-    @DecimalMax(value = "0.50", message = "The interest rate should be less than 0.5")
+    @Min(value = 100,message = "Credit Limit should be greater than 100")
+    @Max(value = 100000, message = "Credit Limit should be less than 100000")
+    private BigDecimal creditLimit;
+    @DecimalMin(value = "0.1", message = "Interest Rate should be greater than 0.1")
+    @DecimalMax(value = "0.2", message = "Interest Rate should be lees than 0.2")
     private BigDecimal interestRate;
 
-    public SavingDTO(@NotEmpty(message = "the balance is required") Money balance, @NotEmpty(message = "the primaryOwnerId is required") Integer primaryOwnerId, Integer secondaryOwnerId, @NotEmpty(message = "the penaltyFee is required") BigDecimal penaltyFee, @NotEmpty(message = "the secretKey is required") String secretKey, @NotEmpty(message = "the minimumBalance is required") BigDecimal minimumBalance, @NotEmpty(message = "the interestRate is required") BigDecimal interestRate) {
+
+    public CreditCardDTO(@NotNull(message = "the balance is required") Money balance, @NotNull(message = "the primaryOwnerId is required") Integer primaryOwnerId, Integer secondaryOwnerId, @NotNull(message = "the penaltyFee is required") BigDecimal penaltyFee, @Min(value = 100, message = "Credit Limit should be greater than 100") @Max(value = 100000, message = "Credit Limit should be less than 100000") BigDecimal creditLimit, @DecimalMin(value = "0.1", message = "Interest Rate should be greater than 0.1") @DecimalMax(value = "0.2", message = "Interest Rate should be lees than 0.2") BigDecimal interestRate) {
         this.balance = balance;
         this.primaryOwnerId = primaryOwnerId;
         this.secondaryOwnerId = secondaryOwnerId;
         this.penaltyFee = penaltyFee;
-        this.secretKey = secretKey;
-        this.minimumBalance = minimumBalance;
+        this.creditLimit = creditLimit;
         this.interestRate = interestRate;
     }
 
@@ -64,20 +64,12 @@ public class SavingDTO {
         this.penaltyFee = penaltyFee;
     }
 
-    public String getSecretKey() {
-        return secretKey;
+    public BigDecimal getCreditLimit() {
+        return creditLimit;
     }
 
-    public void setSecretKey(String secretKey) {
-        this.secretKey = secretKey;
-    }
-
-    public BigDecimal getMinimumBalance() {
-        return minimumBalance;
-    }
-
-    public void setMinimumBalance(BigDecimal minimumBalance) {
-        this.minimumBalance = minimumBalance;
+    public void setCreditLimit(BigDecimal creditLimit) {
+        this.creditLimit = creditLimit;
     }
 
     public BigDecimal getInterestRate() {
