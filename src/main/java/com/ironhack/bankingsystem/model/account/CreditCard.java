@@ -6,18 +6,23 @@ import com.ironhack.bankingsystem.exceptions.IncorrectInterestRate;
 import com.ironhack.bankingsystem.model.user.AccountHolder;
 import com.ironhack.bankingsystem.utils.Money;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
-public class CreditCard  extends Account {
+public class CreditCard extends Account {
 
 
     private BigDecimal creditLimit;
+    @Column(precision = 11,scale = 4)
     private BigDecimal interestRate;
+    private LocalDate paidInterestRate;
 
 
     public CreditCard() {
@@ -28,18 +33,33 @@ public class CreditCard  extends Account {
         this.interestRate = interestRate;
     }
 
-    public CreditCard(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, BigDecimal creditLimit, BigDecimal interestRate) {
-        super(balance, primaryOwner, secondaryOwner, Status.ACTIVE);
-        this.creditLimit = creditLimit;
-        this.interestRate = interestRate;
-    }
 
     public CreditCard(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner) {
         super(balance, primaryOwner, secondaryOwner, Status.ACTIVE);
+        setPaidInterestRate(getCreationDate());
         setCreditLimit(new BigDecimal(100));
         setInterestRate(new BigDecimal(0.2).setScale(1, RoundingMode.HALF_EVEN));
     }
 
+    public void applyInterestRate() {
+        Period period = Period.between(paidInterestRate, LocalDate.now());
+        if (period.getMonths() >= 1) {
+            getBalance().increaseAmount(getBalance().getAmount()
+                    .multiply(interestRate
+                            .divide(new BigDecimal(12),2,RoundingMode.HALF_EVEN)
+                            .multiply(new BigDecimal(period.getMonths())))
+            );
+            setPaidInterestRate(LocalDate.now());
+        }
+    }
+
+    public LocalDate getPaidInterestRate() {
+        return paidInterestRate;
+    }
+
+    public void setPaidInterestRate(LocalDate paidInterestRate) {
+        this.paidInterestRate = paidInterestRate;
+    }
 
     public BigDecimal getCreditLimit() {
         return creditLimit;

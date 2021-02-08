@@ -26,19 +26,19 @@ public class AdminController {
 
     @PostMapping("/v1/admin/create/saving")
     @ResponseStatus(HttpStatus.CREATED)
-    public Savings createSavingAccount (@RequestBody @Valid SavingDTO savingdto){
+    public Savings createSavingAccount(@RequestBody @Valid SavingDTO savingdto) {
         return adminService.createSavingAccount(savingdto);
     }
 
     @PostMapping("v1/admin/create/creditcard")
     @ResponseStatus(HttpStatus.CREATED)
-    public CreditCard createCreditCardAccount(@RequestBody @Valid CreditCardDTO creditCarddto){
+    public CreditCard createCreditCardAccount(@RequestBody @Valid CreditCardDTO creditCarddto) {
         return adminService.createCreditCardAccount(creditCarddto);
     }
 
     @PostMapping("v1/admin/create/checkingAccount")
     @ResponseStatus(HttpStatus.CREATED)
-    public Account createCheckingOrStudentCheckingAccount(@RequestBody @Valid CheckingDTO checkingDTO){
+    public Account createCheckingOrStudentCheckingAccount(@RequestBody @Valid CheckingDTO checkingDTO) {
         return adminService.createCheckingAccountOrCheckingStudent(checkingDTO);
     }
 

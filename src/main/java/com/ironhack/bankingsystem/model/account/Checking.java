@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
-public class Checking extends Account{
+public class Checking extends Account {
 
     private String secretKey;
     private BigDecimal minimumBalance;
@@ -38,6 +38,14 @@ public class Checking extends Account{
         setMinimumBalance(new BigDecimal(250));
         setMonthlyMaintenanceFee(new BigDecimal(12));
     }
+
+
+    public void chargePenaltyFee() {
+        if (minimumBalance.compareTo(getBalance().getAmount()) < 0) {
+            getBalance().decreaseAmount(getPenaltyFee());
+        }
+    }
+
 
     public String getSecretKey() {
         return secretKey;

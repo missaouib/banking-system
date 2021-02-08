@@ -2,7 +2,6 @@ package com.ironhack.bankingsystem.dto.accounts;
 
 import com.ironhack.bankingsystem.utils.Money;
 
-import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -17,9 +16,9 @@ public class CheckingDTO {
     private Integer secondaryOwnerId;
     @NotEmpty(message = "the secretKey is required")
     private String secretKey;
-    @Min(value = 0,message = "should be greater than 0")
+    @Min(value = 0, message = "should be greater than 0")
     private BigDecimal minimumBalance;
-    @Min(value = 0,message = "should be greater than 0")
+    @Min(value = 0, message = "should be greater than 0")
     private BigDecimal monthlyMaintenanceFee;
 
 
