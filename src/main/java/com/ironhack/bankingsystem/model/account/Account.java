@@ -1,5 +1,6 @@
 package com.ironhack.bankingsystem.model.account;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.ironhack.bankingsystem.enums.Status;
 import com.ironhack.bankingsystem.exceptions.AccountNoOwnerByName;
 import com.ironhack.bankingsystem.exceptions.FrozenAccount;
@@ -21,9 +22,11 @@ public abstract class Account {
     private Integer id;
     @Embedded
     private Money balance;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "primaryOwner_id")
     private AccountHolder primaryOwner;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "secondaryOwner_id")
     private AccountHolder secondaryOwner;
@@ -31,27 +34,14 @@ public abstract class Account {
     private LocalDate creationDate;
     @Enumerated(EnumType.STRING)
     private Status status;
-
-    public List<Transaction> getOriginTransactions() {
-        return originTransactions;
-    }
-
-    public void setOriginTransactions(List<Transaction> originTransactions) {
-        this.originTransactions = originTransactions;
-    }
-
-    public List<Transaction> getDestinationTransactions() {
-        return destinationTransactions;
-    }
-
-    public void setDestinationTransactions(List<Transaction> destinationTransactions) {
-        this.destinationTransactions = destinationTransactions;
-    }
-
+    @JsonBackReference
     @OneToMany(mappedBy = "origin")
     private List<Transaction> originTransactions;
+    @JsonBackReference
     @OneToMany(mappedBy = "destination")
     private List<Transaction> destinationTransactions;
+
+
 
 
     public Account() {
@@ -143,4 +133,20 @@ public abstract class Account {
     public void setStatus(Status status) {
         this.status = status;
     }
+    public List<Transaction> getOriginTransactions() {
+        return originTransactions;
+    }
+
+    public void setOriginTransactions(List<Transaction> originTransactions) {
+        this.originTransactions = originTransactions;
+    }
+
+    public List<Transaction> getDestinationTransactions() {
+        return destinationTransactions;
+    }
+
+    public void setDestinationTransactions(List<Transaction> destinationTransactions) {
+        this.destinationTransactions = destinationTransactions;
+    }
+
 }

@@ -2,17 +2,19 @@ package com.ironhack.bankingsystem.service.impl.user;
 
 
 import com.ironhack.bankingsystem.dto.accounts.*;
+import com.ironhack.bankingsystem.enums.Status;
 import com.ironhack.bankingsystem.exceptions.InsufficientFunds;
 import com.ironhack.bankingsystem.exceptions.NoPresentAccount;
 import com.ironhack.bankingsystem.exceptions.NoPresentAccountHolder;
 import com.ironhack.bankingsystem.model.account.*;
 import com.ironhack.bankingsystem.model.user.AccountHolder;
+import com.ironhack.bankingsystem.model.user.ThirdParty;
 import com.ironhack.bankingsystem.repository.accounts.*;
 import com.ironhack.bankingsystem.repository.user.AccountHolderRepository;
+import com.ironhack.bankingsystem.repository.user.ThirdPartyRepository;
+import com.ironhack.bankingsystem.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
 
 
 @Service
@@ -29,6 +31,10 @@ public class AdminService {
     private AccountHolderRepository accountHolderRepository;
     @Autowired
     private StudentCheckingRepository studentCheckingRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private ThirdPartyRepository thirdPartyRepository;
 
     public Savings createSavingAccount(SavingDTO savingdto){
         AccountHolder primaryOwner = accountHolderRepository
@@ -116,6 +122,17 @@ public class AdminService {
         accountRepository.save(account);
     }
 
+    public void modifyStatus(Integer accountId, Status status){
+        Account account = accountRepository.findById(accountId).orElseThrow(NoPresentAccount::new);
+        account.setStatus(status);
+        accountRepository.save(account);
+    }
 
+    public ThirdParty addThirdParty(ThirdPartyDTO thirdPartydto){
+
+        ThirdParty thirdParty = new ThirdParty(thirdPartydto.getName(),thirdPartydto.getHashedKey());
+        return thirdPartyRepository.save(thirdParty);
+
+    }
 
 }
