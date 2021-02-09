@@ -1,25 +1,24 @@
 package com.ironhack.bankingsystem.service.impl.user;
 
 
-import com.ironhack.bankingsystem.dto.accounts.CheckingDTO;
-import com.ironhack.bankingsystem.dto.accounts.CreditCardDTO;
-import com.ironhack.bankingsystem.dto.accounts.SavingDTO;
+import com.ironhack.bankingsystem.dto.accounts.*;
+import com.ironhack.bankingsystem.exceptions.InsufficientFunds;
+import com.ironhack.bankingsystem.exceptions.NoPresentAccount;
 import com.ironhack.bankingsystem.exceptions.NoPresentAccountHolder;
 import com.ironhack.bankingsystem.model.account.*;
 import com.ironhack.bankingsystem.model.user.AccountHolder;
-import com.ironhack.bankingsystem.repository.accounts.CheckingRepository;
-import com.ironhack.bankingsystem.repository.accounts.CreditCardRepository;
-import com.ironhack.bankingsystem.repository.accounts.SavingsRepository;
-import com.ironhack.bankingsystem.repository.accounts.StudentCheckingRepository;
+import com.ironhack.bankingsystem.repository.accounts.*;
 import com.ironhack.bankingsystem.repository.user.AccountHolderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 
 
 @Service
 public class AdminService {
-
+    @Autowired
+    private AccountRepository accountRepository;
     @Autowired
     private SavingsRepository savingsRepository;
     @Autowired
@@ -101,6 +100,19 @@ public class AdminService {
             }
         }
 
+    public void modifyBalance(Integer accountId, AmountDTO amountdto){
 
+        Account account = accountRepository.findById(accountId).orElseThrow(NoPresentAccount::new);
 
+        if (amountdto.getAmount().signum() > 0){
+            account.getBalance().increaseAmount(amountdto.getAmount());
+        } else {
+            if(account.getBalance().getAmount().compareTo(amountdto.getAmount().negate())> 0){
+                account.getBalance().decreaseAmount(amountdto.getAmount().negate());
+            } else{
+                throw new InsufficientFunds();
+            }
+        }
+        accountRepository.save(account);
+    }
 }

@@ -9,12 +9,11 @@ import com.ironhack.bankingsystem.model.account.Savings;
 import com.ironhack.bankingsystem.model.transaction.Transaction;
 import com.ironhack.bankingsystem.repository.accounts.*;
 import com.ironhack.bankingsystem.repository.transaction.TransactionRepository;
-import com.ironhack.bankingsystem.repository.user.AccountHolderRepository;
 import com.ironhack.bankingsystem.utils.Money;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Service
 public class AccountHolderService {
@@ -25,7 +24,7 @@ public class AccountHolderService {
     @Autowired
     private TransactionRepository transactionRepository;
 
-
+    /** service to check the balance */
     public void transferMoney(TransactionDTO transactiondto) {
 
         Account origin = accountRepository.findById(transactiondto.getOriginAccountId()).orElseThrow(NoPresentAccount::new);
@@ -46,7 +45,7 @@ public class AccountHolderService {
             ((Savings) origin).chargePenaltyFee();
         }
 
-        Transaction transaction = new Transaction(LocalDate.now(),new Money(transactiondto.getAmount()),origin,receiver);
+        Transaction transaction = new Transaction(LocalDateTime.now(),new Money(transactiondto.getAmount()),origin,receiver);
 
         transactionRepository.save(transaction);
         accountRepository.save(origin);

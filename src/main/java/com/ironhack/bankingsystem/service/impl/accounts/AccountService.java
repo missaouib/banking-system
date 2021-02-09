@@ -25,6 +25,7 @@ public class AccountService {
     @Autowired
     private StudentCheckingRepository studentCheckingRepository;
 
+    /** service to check the balance */
 
     public BalanceDTO checkBalance(Integer accountId) {
 

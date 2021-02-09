@@ -41,7 +41,7 @@ public class Checking extends Account {
 
 
     public void chargePenaltyFee() {
-        if (minimumBalance.compareTo(getBalance().getAmount()) < 0) {
+        if (minimumBalance.compareTo(getBalance().getAmount()) > 0) {
             getBalance().decreaseAmount(getPenaltyFee());
         }
     }

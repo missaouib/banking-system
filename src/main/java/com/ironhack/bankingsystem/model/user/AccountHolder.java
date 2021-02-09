@@ -12,9 +12,11 @@ import java.util.List;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
-public class AccountHolder extends User{
+public class AccountHolder extends User {
 
     private LocalDate dateOfBirth;
+
+
     @Embedded
     private Address address;
     private String mailingAddress;
@@ -22,7 +24,6 @@ public class AccountHolder extends User{
     private List<Account> primaryOwnerAccounts;
     @OneToMany(mappedBy = "secondaryOwner")
     private List<Account> secondOwnerAccounts;
-
 
 
     public AccountHolder() {
@@ -41,12 +42,13 @@ public class AccountHolder extends User{
         this.mailingAddress = mailingAddress;
     }
 
-    public boolean isOlderThan24(){
-        Period period = Period.between(dateOfBirth,LocalDate.now());
+    /** method to check the owner's age */
+
+    public boolean isOlderThan24() {
+        Period period = Period.between(dateOfBirth, LocalDate.now());
         int age = period.getYears();
         return age > 24;
     }
-
 
 
     public LocalDate getDateOfBirth() {

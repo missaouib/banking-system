@@ -1,6 +1,7 @@
 package com.ironhack.bankingsystem.dto.accounts;
 
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
@@ -13,6 +14,7 @@ public class TransactionDTO {
     @NotNull
     @Min(value = 0,message = "Amount should grater than 0")
     private BigDecimal amount;
+    @NotEmpty
     private String nameOwner;
 
     public TransactionDTO(Integer originAccountId, Integer receiverAccountId, BigDecimal amount, String nameOwner) {

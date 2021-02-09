@@ -49,11 +49,19 @@ public abstract class Account {
         this.status = status;
     }
 
+    /** method to check if the account belongs to the owner */
+
     public void isOwnedBy(String name) {
         if (!primaryOwner.getName().equals(name) && (secondaryOwner == null || !secondaryOwner.getName().equals(name))) {
             throw new AccountNoOwnerByName();
         }
 
+    }
+
+    /** method to modify the account status */
+
+    public void modifyStatus(){
+        setStatus(Status.FROZEN);
     }
 
     public LocalDate getCreationDate() {

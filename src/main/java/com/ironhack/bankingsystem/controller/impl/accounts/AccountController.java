@@ -15,7 +15,7 @@ public class AccountController {
     private AccountService accountService;
 
 
-    @GetMapping("/v1/account/{id}/Balance")
+    @GetMapping("/v1/account/{id}/balance")
     @ResponseStatus(HttpStatus.OK)
     public BalanceDTO accessBalanceByAccountId(@PathVariable(name = "id") Integer accountId) {
         return accountService.checkBalance(accountId);

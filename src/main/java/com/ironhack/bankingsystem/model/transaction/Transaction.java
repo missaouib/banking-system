@@ -7,6 +7,7 @@ import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Transaction {
@@ -14,7 +15,7 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private LocalDate creationDate;
+    private LocalDateTime creationDate;
     private Money amount;
     @ManyToOne
     @JoinColumn(name = "origin_account_id")
@@ -26,7 +27,7 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction(LocalDate creationDate, Money amount, Account origin, Account destination) {
+    public Transaction(LocalDateTime creationDate, Money amount, Account origin, Account destination) {
         this.creationDate = creationDate;
         this.amount = amount;
         this.origin = origin;
@@ -42,11 +43,11 @@ public class Transaction {
         this.id = id;
     }
 
-    public LocalDate getCreationDate() {
+    public LocalDateTime getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(LocalDate creationDate) {
+    public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
     }
 
