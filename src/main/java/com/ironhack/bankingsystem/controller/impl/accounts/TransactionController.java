@@ -1,7 +1,7 @@
-package com.ironhack.bankingsystem.controller.impl.user;
+package com.ironhack.bankingsystem.controller.impl.accounts;
 
 import com.ironhack.bankingsystem.dto.accounts.TransactionDTO;
-import com.ironhack.bankingsystem.service.impl.user.AccountHolderService;
+import com.ironhack.bankingsystem.service.impl.accounts.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,16 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-public class AccountHolderController {
+public class TransactionController {
 
     @Autowired
-    private AccountHolderService accountHolderService;
+    private TransactionService transactionService;
 
     @PostMapping("v1/transaction")
     @ResponseStatus(HttpStatus.CREATED)
     public void makeTransaction (@RequestBody @Valid TransactionDTO transactiondto){
-        accountHolderService.transferMoney(transactiondto);
+        transactionService.transferMoney(transactiondto);
     }
+
 
 
 
