@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.ironhack.bankingsystem.enums.Status;
 import com.ironhack.bankingsystem.exceptions.AccountNoOwnerByName;
 import com.ironhack.bankingsystem.exceptions.FrozenAccount;
+import com.ironhack.bankingsystem.exceptions.UnauthorizedAccess;
 import com.ironhack.bankingsystem.model.transaction.Transaction;
 import com.ironhack.bankingsystem.model.user.AccountHolder;
+import com.ironhack.bankingsystem.model.user.User;
 import com.ironhack.bankingsystem.utils.Money;
 
 import javax.persistence.*;
@@ -59,7 +61,7 @@ public abstract class Account {
     /** method to check if the account belongs to the owner */
 
     public void isOwnedBy(String name) {
-        if (!primaryOwner.getName().equals(name) && (secondaryOwner == null || !secondaryOwner.getName().equals(name))) {
+        if (!primaryOwner.getUsername().equals(name) && (secondaryOwner == null || !secondaryOwner.getUsername().equals(name))) {
             throw new AccountNoOwnerByName();
         }
 
@@ -77,6 +79,13 @@ public abstract class Account {
             throw new FrozenAccount();
         }
     }
+    /** method to check if the account belongs to the owner User */
+    public void isOwnedBy(User user){
+        if(!user.getUsername().equals(primaryOwner.getUsername()) && !user.getUsername().equals(secondaryOwner.getUsername())){
+            throw new UnauthorizedAccess();
+        }
+    }
+
 
     public LocalDate getCreationDate() {
         return creationDate;

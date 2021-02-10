@@ -1,5 +1,7 @@
 package com.ironhack.bankingsystem.model.user;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,6 +13,8 @@ public class Role {
     private String name;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonBackReference
     private User user;
 
     public Role() {

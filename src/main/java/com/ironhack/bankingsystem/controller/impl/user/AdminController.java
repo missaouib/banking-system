@@ -17,47 +17,45 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
+@RequestMapping("/v1/admin")
 public class AdminController {
 
     @Autowired
-    private AdminRepository adminRepository;
-    @Autowired
     private AdminService adminService;
 
-
-    @PostMapping("/v1/admin/saving")
+    @PostMapping("/saving")
     @ResponseStatus(HttpStatus.CREATED)
     public Savings createSavingAccount(@RequestBody @Valid SavingDTO savingdto) {
         return adminService.createSavingAccount(savingdto);
     }
 
-    @PostMapping("v1/admin/creditcard")
+    @PostMapping("/creditcard")
     @ResponseStatus(HttpStatus.CREATED)
     public CreditCard createCreditCardAccount(@RequestBody @Valid CreditCardDTO creditCarddto) {
         return adminService.createCreditCardAccount(creditCarddto);
     }
 
-    @PostMapping("v1/admin/checkingAccount")
+    @PostMapping("/checkingaccount")
     @ResponseStatus(HttpStatus.CREATED)
     public Account createCheckingOrStudentCheckingAccount(@RequestBody @Valid CheckingDTO checkingDTO) {
         return adminService.createCheckingAccountOrCheckingStudent(checkingDTO);
     }
 
-    @PostMapping("v1/admin/thirdParty")
+    @PostMapping("/thirdparty")
     @ResponseStatus(HttpStatus.CREATED)
-    public ThirdParty addThirdParty(@RequestBody @Valid ThirdPartyDTO thirdPartydto){
+    public ThirdParty addThirdParty(@RequestBody @Valid ThirdPartyDTO thirdPartydto) {
         return adminService.addThirdParty(thirdPartydto);
     }
 
-    @PutMapping("v1/account/modify/{id}")
+    @PutMapping("/account/{id}/balance")
     @ResponseStatus(HttpStatus.OK)
-    public void modifyBalance (@PathVariable Integer id, @RequestBody AmountDTO Amountdto){
-        adminService.modifyBalance(id,Amountdto);
+    public void modifyBalance(@PathVariable Integer id, @RequestBody AmountDTO Amountdto) {
+        adminService.modifyBalance(id, Amountdto);
     }
 
-    @PatchMapping("v1/admin/{id}/status")
+    @PatchMapping("/account/{id}/status")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void changeStatus(@PathVariable Integer id, @RequestBody @Valid StatusDTO statusdto){
+    public void changeStatus(@PathVariable Integer id, @RequestBody @Valid StatusDTO statusdto) {
         adminService.modifyStatus(id, Status.valueOf(statusdto.getStatus().toUpperCase()));
     }
 }

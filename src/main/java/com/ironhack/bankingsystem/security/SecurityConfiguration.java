@@ -12,7 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-@EnableGlobalMethodSecurity
+@EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
@@ -40,11 +40,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.httpBasic();
         http.csrf().disable();
         http.authorizeRequests()
-                .mvcMatchers("/blogpost/author").hasAnyRole("ADMIN","CONTRIBUTOR")
-                .mvcMatchers("/author/update").hasAnyRole("ADMIN","CONTRIBUTOR")
-                .mvcMatchers("/author/create").hasRole("ADMIN")
-                .mvcMatchers("/author/delete").hasRole("ADMIN")
-                .mvcMatchers("/blogPost").hasRole("ADMIN")
+                .mvcMatchers("/v1/accounts/**").hasAnyRole("ACCOUNTHOLDER","ADMIN")
+                .mvcMatchers("/v1/account/**").hasAnyRole("ACCOUNTHOLDER","ADMIN")
+                .mvcMatchers("/v1/transaction/").hasRole("ACCOUNTHOLDER")
+                .mvcMatchers("/v1/admin/**").hasRole("ADMIN")
+                .mvcMatchers("v1/thirdParty/").hasRole("THIRDPARTY")
                 .anyRequest().permitAll();
     }
 

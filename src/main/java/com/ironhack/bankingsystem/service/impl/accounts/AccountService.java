@@ -3,11 +3,13 @@ package com.ironhack.bankingsystem.service.impl.accounts;
 import com.ironhack.bankingsystem.dto.accounts.BalanceDTO;
 import com.ironhack.bankingsystem.exceptions.NoPresentAccount;
 import com.ironhack.bankingsystem.exceptions.NoPresentAccountHolder;
+import com.ironhack.bankingsystem.exceptions.UnauthorizedAccess;
 import com.ironhack.bankingsystem.model.account.*;
 import com.ironhack.bankingsystem.model.user.AccountHolder;
 import com.ironhack.bankingsystem.repository.accounts.*;
 import com.ironhack.bankingsystem.repository.user.AccountHolderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,12 +31,12 @@ public class AccountService {
     }
 
 
-
     /** service to check the balance */
 
-    public BalanceDTO checkBalance(Integer accountId) {
+    public BalanceDTO checkBalance(Integer accountId, UserDetails user) {
 
         Account account = accountRepository.findById(accountId).orElseThrow(NoPresentAccount::new);
+        account.isOwnedBy(user.getUsername());
 
         if (account instanceof Checking) {
             return new BalanceDTO(account.getBalance());

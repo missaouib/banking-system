@@ -17,8 +17,8 @@ public class ThirdParty extends User{
         this.hashedKey = hashedKey;
     }
 
-    public ThirdParty(String name, String hashedKey) {
-        super(name);
+    public ThirdParty(String userName, String password, String hashedKey) {
+        super(userName, password);
         this.hashedKey = hashedKey;
     }
 

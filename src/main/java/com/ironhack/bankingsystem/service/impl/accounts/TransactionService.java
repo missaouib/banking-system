@@ -9,10 +9,12 @@ import com.ironhack.bankingsystem.model.account.Account;
 import com.ironhack.bankingsystem.model.account.Checking;
 import com.ironhack.bankingsystem.model.account.Savings;
 import com.ironhack.bankingsystem.model.transaction.Transaction;
+import com.ironhack.bankingsystem.model.user.User;
 import com.ironhack.bankingsystem.repository.accounts.*;
 import com.ironhack.bankingsystem.repository.transaction.TransactionRepository;
 import com.ironhack.bankingsystem.utils.Money;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -34,10 +36,12 @@ public class TransactionService {
     /**
      * service to check the balance
      */
-    public void transferMoney(TransactionDTO transactiondto) {
+    public void transferMoney(TransactionDTO transactiondto, UserDetails user) {
 
         Account origin = accountRepository.findById(transactiondto.getOriginAccountId()).orElseThrow(NoPresentAccount::new);
         Account receiver = accountRepository.findById(transactiondto.getReceiverAccountId()).orElseThrow(NoPresentAccount::new);
+        origin.isOwnedBy(user.getUsername());
+
 
         receiver.isOwnedBy(transactiondto.getNameOwner());
         fraudDetectionInDay(origin);

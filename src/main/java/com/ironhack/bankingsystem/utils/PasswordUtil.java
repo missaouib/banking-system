@@ -6,9 +6,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class PasswordUtil {
 
-    public static void main(String[] args) {
+    public static String encode(String password) {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        System.out.println(passwordEncoder.encode("321654"));
+        String passwordEncoded =passwordEncoder.encode(password);
+        System.out.println(passwordEncoded);
+        return passwordEncoded;
     }
 
 

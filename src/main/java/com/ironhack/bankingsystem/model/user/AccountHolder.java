@@ -2,10 +2,7 @@ package com.ironhack.bankingsystem.model.user;
 
 import com.ironhack.bankingsystem.model.account.Account;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
@@ -19,7 +16,13 @@ public class AccountHolder extends User {
 
     @Embedded
     private Address address;
-    private String mailingAddress;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "street",column = @Column(name = "mailing_street")),
+            @AttributeOverride(name = "postalCode",column = @Column(name = "mailing_postal_code")),
+            @AttributeOverride(name = "city",column = @Column(name = "mailing_city")),
+            @AttributeOverride(name = "country",column = @Column(name = "mailing_country"))})
+    private Address mailingAddress;
     @OneToMany(mappedBy = "primaryOwner")
     private List<Account> primaryOwnerAccounts;
     @OneToMany(mappedBy = "secondaryOwner")
@@ -29,14 +32,8 @@ public class AccountHolder extends User {
     public AccountHolder() {
     }
 
-    public AccountHolder(LocalDate dateOfBirth, Address address, String mailingAddress) {
-        this.dateOfBirth = dateOfBirth;
-        this.address = address;
-        this.mailingAddress = mailingAddress;
-    }
-
-    public AccountHolder(String name, LocalDate dateOfBirth, Address address, String mailingAddress) {
-        super(name);
+    public AccountHolder(String userName, String password, LocalDate dateOfBirth, Address address, Address mailingAddress) {
+        super(userName, password);
         this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.mailingAddress = mailingAddress;
@@ -67,11 +64,27 @@ public class AccountHolder extends User {
         this.address = address;
     }
 
-    public String getMailingAddress() {
+    public Address getMailingAddress() {
         return mailingAddress;
     }
 
-    public void setMailingAddress(String mailingAddress) {
+    public void setMailingAddress(Address mailingAddress) {
         this.mailingAddress = mailingAddress;
+    }
+
+    public List<Account> getPrimaryOwnerAccounts() {
+        return primaryOwnerAccounts;
+    }
+
+    public void setPrimaryOwnerAccounts(List<Account> primaryOwnerAccounts) {
+        this.primaryOwnerAccounts = primaryOwnerAccounts;
+    }
+
+    public List<Account> getSecondOwnerAccounts() {
+        return secondOwnerAccounts;
+    }
+
+    public void setSecondOwnerAccounts(List<Account> secondOwnerAccounts) {
+        this.secondOwnerAccounts = secondOwnerAccounts;
     }
 }
