@@ -22,7 +22,7 @@ public class ThirdPartyController {
         thirdPartyService.sendMoney(thirdPartyTransactiondto);
     }
 
-    @PutMapping("v1/thirdParty/sendmoney")
+    @PutMapping("v1/thirdParty/receivemoney")
     @ResponseStatus(HttpStatus.OK)
     public void thirdPartyReceiveMoney(@RequestBody @Valid ThirdPartyTransactionDTO thirdPartyTransactiondto, @RequestHeader("Hashed-key") String hashedKey){
         thirdPartyTransactiondto.setHashedKey(hashedKey);

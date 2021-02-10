@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Locale;
+import java.util.Optional;
 
 @RestController
 public class AccountController {
@@ -27,6 +27,12 @@ public class AccountController {
     @ResponseStatus(HttpStatus.OK)
     public List<Account> findAll(){
         return accountRepository.findAll();
+    }
+
+    @GetMapping("v1/accounts/{accountHolderId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Account> findByOwnerId(@PathVariable Integer accountHolderId){
+        return accountService.viewAccountsById(accountHolderId);
     }
 
     @GetMapping("v1/accounts/{status}")
