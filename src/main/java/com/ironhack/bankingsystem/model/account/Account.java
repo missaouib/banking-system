@@ -44,8 +44,6 @@ public abstract class Account {
     private List<Transaction> destinationTransactions;
 
 
-
-
     public Account() {
     }
 
@@ -58,7 +56,9 @@ public abstract class Account {
         this.status = status;
     }
 
-    /** method to check if the account belongs to the owner */
+    /**
+     * method to check if the account belongs to the owner
+     */
 
     public void isOwnedBy(String name) {
         if (!primaryOwner.getUsername().equals(name) && (secondaryOwner == null || !secondaryOwner.getUsername().equals(name))) {
@@ -67,21 +67,28 @@ public abstract class Account {
 
     }
 
-    /** method to modify the account status */
+    /**
+     * method to modify the account status
+     */
 
-    public void toFrozen(){
+    public void toFrozen() {
         setStatus(Status.FROZEN);
     }
 
-    /** method to check the account status */
-    public void checkFrozen(){
-        if(status == Status.FROZEN){
+    /**
+     * method to check the account status
+     */
+    public void checkFrozen() {
+        if (status == Status.FROZEN) {
             throw new FrozenAccount();
         }
     }
-    /** method to check if the account belongs to the owner User */
-    public void isOwnedBy(User user){
-        if(!user.getUsername().equals(primaryOwner.getUsername()) && !user.getUsername().equals(secondaryOwner.getUsername())){
+
+    /**
+     * method to check if the account belongs to the owner User
+     */
+    public void isOwnedBy(User user) {
+        if (!user.getUsername().equals(primaryOwner.getUsername()) && !user.getUsername().equals(secondaryOwner.getUsername())) {
             throw new UnauthorizedAccess();
         }
     }
@@ -142,6 +149,7 @@ public abstract class Account {
     public void setStatus(Status status) {
         this.status = status;
     }
+
     public List<Transaction> getOriginTransactions() {
         return originTransactions;
     }

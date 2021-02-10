@@ -14,13 +14,15 @@ import javax.validation.Valid;
 
 public interface IAdminController {
 
-    public Savings createSavingAccount( SavingDTO savingdto);
+    public Savings createSavingAccount(SavingDTO savingdto);
+
     public CreditCard createCreditCardAccount(CreditCardDTO creditCarddto);
+
     public Account createCheckingOrStudentCheckingAccount(CheckingDTO checkingDTO);
+
     public ThirdParty addThirdParty(ThirdPartyDTO thirdPartydto);
-    public void modifyBalance( Integer id,  AmountDTO Amountdto);
-    public void changeStatus( Integer id, StatusDTO statusdto);
 
+    public void modifyBalance(Integer id, AmountDTO Amountdto);
 
-
+    public void changeStatus(Integer id, StatusDTO statusdto);
 }

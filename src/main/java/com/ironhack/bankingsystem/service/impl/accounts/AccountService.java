@@ -1,6 +1,7 @@
 package com.ironhack.bankingsystem.service.impl.accounts;
 
 import com.ironhack.bankingsystem.dto.accounts.BalanceDTO;
+import com.ironhack.bankingsystem.enums.Status;
 import com.ironhack.bankingsystem.exceptions.NoPresentAccount;
 import com.ironhack.bankingsystem.exceptions.NoPresentAccountHolder;
 import com.ironhack.bankingsystem.exceptions.UnauthorizedAccess;
@@ -12,6 +13,7 @@ import com.ironhack.bankingsystem.service.interfaces.accounts.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -25,14 +27,23 @@ public class AccountService implements IAccountService {
     private AccountHolderRepository accountHolderRepository;
 
 
-    public List<Account> viewAccountsById(Integer accountHolderId){
+    public List<Account> findAll() {
+        return accountRepository.findAll();
+    }
+
+    public List<Account> findByStatus(Status status) {
+        return accountRepository.findByStatus(status);
+    }
+
+    public List<Account> viewAccountsById(Integer accountHolderId) {
         AccountHolder owner = accountHolderRepository.findById(accountHolderId).orElseThrow(NoPresentAccountHolder::new);
         return accountRepository.findByPrimaryOwnerOrSecondaryOwner(owner, owner);
 
     }
 
-
-    /** service to check the balance */
+    /**
+     * service to check the balance
+     */
 
     public BalanceDTO checkBalance(Integer accountId, UserDetails user) {
         Account account = accountRepository.findById(accountId).orElseThrow(NoPresentAccount::new);
@@ -55,6 +66,4 @@ public class AccountService implements IAccountService {
             return new BalanceDTO(account.getBalance());
         }
     }
-
-
 }

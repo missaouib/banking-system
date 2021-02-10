@@ -13,9 +13,14 @@ import com.ironhack.bankingsystem.model.user.ThirdParty;
 
 public interface IAdminService {
     public Savings createSavingAccount(SavingDTO savingdto);
+
     public CreditCard createCreditCardAccount(CreditCardDTO creditCarddto);
+
     public Account createCheckingAccountOrCheckingStudent(CheckingDTO checkingdto);
+
     public void modifyBalance(Integer accountId, AmountDTO amountdto);
+
     public void modifyStatus(Integer accountId, Status status);
+
     public ThirdParty addThirdParty(ThirdPartyDTO thirdPartydto);
 }

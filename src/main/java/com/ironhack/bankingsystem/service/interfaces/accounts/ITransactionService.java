@@ -7,7 +7,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 public interface ITransactionService {
 
     public void transferMoney(TransactionDTO transactiondto, UserDetails user);
+
     public void fraudDetectionInDay(Account account);
+
     public void fraudDetectionBySeconds(Account account);
 
 }
