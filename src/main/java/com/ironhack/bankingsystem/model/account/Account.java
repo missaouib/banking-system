@@ -64,7 +64,6 @@ public abstract class Account {
         if (!primaryOwner.getUsername().equals(name) && (secondaryOwner == null || !secondaryOwner.getUsername().equals(name))) {
             throw new AccountNoOwnerByName();
         }
-
     }
 
     /**
@@ -83,16 +82,6 @@ public abstract class Account {
             throw new FrozenAccount();
         }
     }
-
-    /**
-     * method to check if the account belongs to the owner User
-     */
-    public void isOwnedBy(User user) {
-        if (!user.getUsername().equals(primaryOwner.getUsername()) && !user.getUsername().equals(secondaryOwner.getUsername())) {
-            throw new UnauthorizedAccess();
-        }
-    }
-
 
     public LocalDate getCreationDate() {
         return creationDate;

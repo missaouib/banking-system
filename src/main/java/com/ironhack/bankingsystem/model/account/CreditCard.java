@@ -31,7 +31,6 @@ public class CreditCard extends Account {
         this.interestRate = interestRate;
     }
 
-
     public CreditCard(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner) {
         super(balance, primaryOwner, secondaryOwner, Status.ACTIVE);
         setPaidInterestRate(getCreationDate());
@@ -45,7 +44,7 @@ public class CreditCard extends Account {
             getBalance().increaseAmount(getBalance().getAmount()
                     .multiply(interestRate
                             .divide(new BigDecimal(12),2,RoundingMode.HALF_EVEN)
-                            .multiply(new BigDecimal(period.getMonths())))
+                            .multiply(new BigDecimal(period.getMonths()))).setScale(2)
             );
             setPaidInterestRate(LocalDate.now());
         }

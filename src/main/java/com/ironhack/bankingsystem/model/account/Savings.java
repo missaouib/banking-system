@@ -44,7 +44,7 @@ public class Savings  extends Account {
     public void applyInterestRate(){
         Period period = Period.between(paidInterestRate, LocalDate.now());
         if (period.getYears() >= 1){
-            getBalance().increaseAmount(getBalance().getAmount().multiply(getInterestRate()));
+            getBalance().increaseAmount(getBalance().getAmount().multiply(getInterestRate()).setScale(2,RoundingMode.HALF_EVEN));
             setPaidInterestRate(LocalDate.now());
         }
     }
