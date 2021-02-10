@@ -1,4 +1,4 @@
-package com.ironhack.bankingsystem.dto.accounts;
+package com.ironhack.bankingsystem.dto.user;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;

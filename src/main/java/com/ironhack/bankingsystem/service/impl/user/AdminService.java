@@ -2,6 +2,7 @@ package com.ironhack.bankingsystem.service.impl.user;
 
 
 import com.ironhack.bankingsystem.dto.accounts.*;
+import com.ironhack.bankingsystem.dto.user.ThirdPartyDTO;
 import com.ironhack.bankingsystem.enums.Status;
 import com.ironhack.bankingsystem.exceptions.InsufficientFunds;
 import com.ironhack.bankingsystem.exceptions.NoPresentAccount;

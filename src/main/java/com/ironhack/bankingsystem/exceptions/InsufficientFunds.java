@@ -3,6 +3,6 @@ package com.ironhack.bankingsystem.exceptions;
 public class InsufficientFunds extends RuntimeException {
 
     public InsufficientFunds() {
-        super("there are not enough funds to make the transfer");
+        super("the operation cannot be carried out, there are not enough funds in the account");
     }
 }

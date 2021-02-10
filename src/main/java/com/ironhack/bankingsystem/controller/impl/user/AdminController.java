@@ -2,11 +2,11 @@ package com.ironhack.bankingsystem.controller.impl.user;
 
 
 import com.ironhack.bankingsystem.dto.accounts.*;
+import com.ironhack.bankingsystem.dto.user.ThirdPartyDTO;
 import com.ironhack.bankingsystem.enums.Status;
 import com.ironhack.bankingsystem.model.account.Account;
 import com.ironhack.bankingsystem.model.account.CreditCard;
 import com.ironhack.bankingsystem.model.account.Savings;
-import com.ironhack.bankingsystem.model.user.Admin;
 import com.ironhack.bankingsystem.model.user.ThirdParty;
 import com.ironhack.bankingsystem.repository.user.AdminRepository;
 import com.ironhack.bankingsystem.service.impl.user.AdminService;
