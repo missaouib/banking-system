@@ -15,5 +15,4 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     public List<Account> findByPrimaryOwnerOrSecondaryOwner(AccountHolder primaryOwnerId, AccountHolder secondaryOwnerId);
     public List<Account> findByStatus(Status status);
 
-
 }

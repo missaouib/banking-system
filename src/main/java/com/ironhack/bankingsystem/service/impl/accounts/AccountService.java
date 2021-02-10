@@ -35,7 +35,6 @@ public class AccountService implements IAccountService {
     /** service to check the balance */
 
     public BalanceDTO checkBalance(Integer accountId, UserDetails user) {
-
         Account account = accountRepository.findById(accountId).orElseThrow(NoPresentAccount::new);
         account.isOwnedBy(user.getUsername());
 

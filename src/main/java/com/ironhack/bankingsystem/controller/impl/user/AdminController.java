@@ -9,7 +9,6 @@ import com.ironhack.bankingsystem.model.account.Account;
 import com.ironhack.bankingsystem.model.account.CreditCard;
 import com.ironhack.bankingsystem.model.account.Savings;
 import com.ironhack.bankingsystem.model.user.ThirdParty;
-import com.ironhack.bankingsystem.repository.user.AdminRepository;
 import com.ironhack.bankingsystem.service.impl.user.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

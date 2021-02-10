@@ -1,6 +1,5 @@
 package com.ironhack.bankingsystem.service.impl.user;
 
-
 import com.ironhack.bankingsystem.dto.accounts.*;
 import com.ironhack.bankingsystem.dto.user.ThirdPartyDTO;
 import com.ironhack.bankingsystem.enums.Status;
@@ -11,12 +10,9 @@ import com.ironhack.bankingsystem.model.account.*;
 import com.ironhack.bankingsystem.model.user.AccountHolder;
 import com.ironhack.bankingsystem.model.user.Role;
 import com.ironhack.bankingsystem.model.user.ThirdParty;
-import com.ironhack.bankingsystem.model.user.User;
 import com.ironhack.bankingsystem.repository.accounts.*;
 import com.ironhack.bankingsystem.repository.user.AccountHolderRepository;
-import com.ironhack.bankingsystem.repository.user.RoleRepository;
 import com.ironhack.bankingsystem.repository.user.ThirdPartyRepository;
-import com.ironhack.bankingsystem.repository.user.UserRepository;
 import com.ironhack.bankingsystem.service.interfaces.user.IAdminService;
 import com.ironhack.bankingsystem.utils.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,103 +20,97 @@ import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
-
 @Service
 public class AdminService implements IAdminService {
-    @Autowired
-    private AccountRepository accountRepository;
-    @Autowired
-    private SavingsRepository savingsRepository;
-    @Autowired
-    private CreditCardRepository creditCardRepository;
-    @Autowired
-    private CheckingRepository checkingRepository;
-    @Autowired
-    private AccountHolderRepository accountHolderRepository;
-    @Autowired
-    private StudentCheckingRepository studentCheckingRepository;
-    @Autowired
-    private ThirdPartyRepository thirdPartyRepository;
+    private final AccountRepository accountRepository;
+    private final SavingsRepository savingsRepository;
+    private final CreditCardRepository creditCardRepository;
+    private final CheckingRepository checkingRepository;
+    private final AccountHolderRepository accountHolderRepository;
+    private final StudentCheckingRepository studentCheckingRepository;
+    private final ThirdPartyRepository thirdPartyRepository;
 
-    public Savings createSavingAccount(SavingDTO savingdto) {
-        AccountHolder primaryOwner = accountHolderRepository
-                .findById(savingdto.getPrimaryOwnerId())
-                .orElseThrow(NoPresentAccountHolder::new);
+    @Autowired
+    public AdminService( AccountRepository accountRepository, SavingsRepository savingsRepository, CreditCardRepository creditCardRepository, CheckingRepository checkingRepository, AccountHolderRepository accountHolderRepository, StudentCheckingRepository studentCheckingRepository, ThirdPartyRepository thirdPartyRepository) {
+        this.accountRepository = accountRepository;
+        this.savingsRepository = savingsRepository;
+        this.creditCardRepository = creditCardRepository;
+        this.checkingRepository = checkingRepository;
+        this.accountHolderRepository = accountHolderRepository;
+        this.studentCheckingRepository = studentCheckingRepository;
+        this.thirdPartyRepository = thirdPartyRepository;
+    }
+
+    public Savings createSavingAccount(SavingDTO savingDto) {
+        AccountHolder primaryOwner = getOwner(savingDto.getPrimaryOwnerId());
 
         AccountHolder secondaryOwner = null;
-        if (savingdto.getSecondaryOwnerId() != null) {
-            secondaryOwner = accountHolderRepository.findById(savingdto.getSecondaryOwnerId())
-                    .orElseThrow(NoPresentAccountHolder::new);
+        if (savingDto.getSecondaryOwnerId() != null) {
+            secondaryOwner = getOwner(savingDto.getSecondaryOwnerId());
         }
-        Savings savings = new Savings(savingdto.getBalance(), primaryOwner, secondaryOwner, savingdto.getSecretKey());
+        Savings savings = new Savings(savingDto.getBalance(), primaryOwner, secondaryOwner, savingDto.getSecretKey());
 
-        if (savingdto.getMinimumBalance() != null) {
-            savings.setMinimumBalance(savingdto.getMinimumBalance());
+        if (savingDto.getMinimumBalance() != null) {
+            savings.setMinimumBalance(savingDto.getMinimumBalance());
         }
-        if (savingdto.getInterestRate() != null) {
-            savings.setInterestRate(savingdto.getInterestRate());
+        if (savingDto.getInterestRate() != null) {
+            savings.setInterestRate(savingDto.getInterestRate());
         }
         return savingsRepository.save(savings);
     }
 
-    public CreditCard createCreditCardAccount(CreditCardDTO creditCarddto) {
-        AccountHolder primaryOwner = accountHolderRepository
-                .findById(creditCarddto.getPrimaryOwnerId())
-                .orElseThrow(NoPresentAccountHolder::new);
+    public CreditCard createCreditCardAccount(CreditCardDTO creditCardDto) {
+        AccountHolder primaryOwner = getOwner(creditCardDto.getPrimaryOwnerId());
 
         AccountHolder secondaryOwner = null;
-        if (creditCarddto.getSecondaryOwnerId() != null) {
-            secondaryOwner = accountHolderRepository.findById(creditCarddto.getSecondaryOwnerId())
-                    .orElseThrow(NoPresentAccountHolder::new);
+        if (creditCardDto.getSecondaryOwnerId() != null) {
+            secondaryOwner = getOwner(creditCardDto.getSecondaryOwnerId());
         }
 
-        CreditCard creditCard = new CreditCard(creditCarddto.getBalance(), primaryOwner, secondaryOwner);
+        CreditCard creditCard = new CreditCard(creditCardDto.getBalance(), primaryOwner, secondaryOwner);
 
-        if (creditCarddto.getCreditLimit() != null) {
-            creditCard.setCreditLimit(creditCarddto.getCreditLimit());
+        if (creditCardDto.getCreditLimit() != null) {
+            creditCard.setCreditLimit(creditCardDto.getCreditLimit());
         }
-        if (creditCarddto.getInterestRate() != null) {
-            creditCard.setInterestRate(creditCarddto.getInterestRate());
+        if (creditCardDto.getInterestRate() != null) {
+            creditCard.setInterestRate(creditCardDto.getInterestRate());
         }
         return creditCardRepository.save(creditCard);
     }
 
-    public Account createCheckingAccountOrCheckingStudent(CheckingDTO checkingdto) {
-        AccountHolder primaryOwner = accountHolderRepository
-                .findById(checkingdto.getPrimaryOwnerId())
-                .orElseThrow(NoPresentAccountHolder::new);
+    public Account createCheckingAccountOrCheckingStudent(CheckingDTO checkingDto) {
+        AccountHolder primaryOwner = getOwner(checkingDto.getPrimaryOwnerId());
 
         AccountHolder secondaryOwner = null;
-        if (checkingdto.getSecondaryOwnerId() != null) {
-            secondaryOwner = accountHolderRepository.findById(checkingdto.getSecondaryOwnerId())
-                    .orElseThrow(NoPresentAccountHolder::new);
+        if (checkingDto.getSecondaryOwnerId() != null) {
+            secondaryOwner = getOwner(checkingDto.getSecondaryOwnerId());
         }
 
         if (primaryOwner.isOlderThan24()) {
-            Checking checking = new Checking(checkingdto.getBalance(), primaryOwner, secondaryOwner, checkingdto.getSecretKey());
+            Checking checking = new Checking(checkingDto.getBalance(), primaryOwner, secondaryOwner, checkingDto.getSecretKey());
 
-            if (checkingdto.getMinimumBalance() != null) {
-                checking.setMinimumBalance(checkingdto.getMinimumBalance());
+            if (checkingDto.getMinimumBalance() != null) {
+                checking.setMinimumBalance(checkingDto.getMinimumBalance());
             }
-            if (checkingdto.getMonthlyMaintenanceFee() != null) {
-                checking.setMonthlyMaintenanceFee(checkingdto.getMonthlyMaintenanceFee());
+            if (checkingDto.getMonthlyMaintenanceFee() != null) {
+                checking.setMonthlyMaintenanceFee(checkingDto.getMonthlyMaintenanceFee());
             }
             return checkingRepository.save(checking);
         } else {
-            StudentChecking studentChecking = new StudentChecking(checkingdto.getBalance(), primaryOwner, secondaryOwner, checkingdto.getSecretKey());
+            StudentChecking studentChecking = new StudentChecking(checkingDto.getBalance(), primaryOwner, secondaryOwner, checkingDto.getSecretKey());
             return studentCheckingRepository.save(studentChecking);
         }
     }
 
-    public void modifyBalance(Integer accountId, AmountDTO amountdto) {
+    public void modifyBalance(Integer accountId, AmountDTO amountDto) {
 
         Account account = accountRepository.findById(accountId).orElseThrow(NoPresentAccount::new);
 
-        if (amountdto.getAmount().signum() > 0) {
-            account.getBalance().increaseAmount(amountdto.getAmount());
+        if (amountDto.getAmount().signum() > 0) {
+            account.getBalance().increaseAmount(amountDto.getAmount());
         } else {
-            if (account.getBalance().getAmount().compareTo(amountdto.getAmount().negate()) > 0) {
-                account.getBalance().decreaseAmount(amountdto.getAmount().negate());
+            if (account.getBalance().getAmount().compareTo(amountDto.getAmount().negate()) > 0) {
+                account.getBalance().decreaseAmount(amountDto.getAmount().negate());
             } else {
                 throw new InsufficientFunds();
             }
@@ -138,6 +128,15 @@ public class AdminService implements IAdminService {
         ThirdParty thirdParty = new ThirdParty(thirdPartydto.getUsername(), PasswordUtil.encode(thirdPartydto.getPassword()), thirdPartydto.getHashedKey());
         thirdParty.setRoles(Set.of(new Role("THIRDPARTY", thirdParty)));
         return thirdPartyRepository.save(thirdParty);
+    }
+
+    /**
+     * Get owner by id
+     * @param ownerId
+     * @return
+     */
+    private AccountHolder getOwner(Integer ownerId) {
+        return accountHolderRepository.findById(ownerId).orElseThrow(NoPresentAccountHolder::new);
     }
 
 }

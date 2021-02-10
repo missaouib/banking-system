@@ -12,7 +12,6 @@ import com.ironhack.bankingsystem.model.account.Savings;
 import com.ironhack.bankingsystem.model.user.ThirdParty;
 
 public interface IAdminService {
-
     public Savings createSavingAccount(SavingDTO savingdto);
     public CreditCard createCreditCardAccount(CreditCardDTO creditCarddto);
     public Account createCheckingAccountOrCheckingStudent(CheckingDTO checkingdto);

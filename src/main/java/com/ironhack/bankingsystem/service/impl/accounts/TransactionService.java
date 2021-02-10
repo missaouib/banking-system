@@ -37,24 +37,24 @@ public class TransactionService implements ITransactionService {
     /**
      * service to check the balance
      */
-    public void transferMoney(TransactionDTO transactiondto, UserDetails user) {
+    public void transferMoney(TransactionDTO transactionDto, UserDetails user) {
 
-        Account origin = accountRepository.findById(transactiondto.getOriginAccountId()).orElseThrow(NoPresentAccount::new);
-        Account receiver = accountRepository.findById(transactiondto.getReceiverAccountId()).orElseThrow(NoPresentAccount::new);
+        Account origin = accountRepository.findById(transactionDto.getOriginAccountId()).orElseThrow(NoPresentAccount::new);
+        Account receiver = accountRepository.findById(transactionDto.getReceiverAccountId()).orElseThrow(NoPresentAccount::new);
         origin.isOwnedBy(user.getUsername());
 
 
-        receiver.isOwnedBy(transactiondto.getNameOwner());
+        receiver.isOwnedBy(transactionDto.getNameOwner());
         fraudDetectionInDay(origin);
         fraudDetectionBySeconds(origin);
         origin.checkFrozen();
 
-        if (origin.getBalance().getAmount().compareTo(transactiondto.getAmount()) < 0) {
+        if (origin.getBalance().getAmount().compareTo(transactionDto.getAmount()) < 0) {
             throw new InsufficientFunds();
         }
 
-        origin.getBalance().decreaseAmount(transactiondto.getAmount());
-        receiver.getBalance().increaseAmount(transactiondto.getAmount());
+        origin.getBalance().decreaseAmount(transactionDto.getAmount());
+        receiver.getBalance().increaseAmount(transactionDto.getAmount());
 
         if (origin instanceof Checking) {
             ((Checking) origin).chargePenaltyFee();
@@ -62,7 +62,7 @@ public class TransactionService implements ITransactionService {
             ((Savings) origin).chargePenaltyFee();
         }
 
-        Transaction transaction = new Transaction(LocalDateTime.now(), new Money(transactiondto.getAmount()), origin, receiver);
+        Transaction transaction = new Transaction(LocalDateTime.now(), new Money(transactionDto.getAmount()), origin, receiver);
 
         transactionRepository.save(transaction);
         accountRepository.save(origin);
