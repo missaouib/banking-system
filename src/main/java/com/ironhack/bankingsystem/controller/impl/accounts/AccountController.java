@@ -1,5 +1,6 @@
 package com.ironhack.bankingsystem.controller.impl.accounts;
 
+import com.ironhack.bankingsystem.controller.interfaces.accounts.IAccountController;
 import com.ironhack.bankingsystem.dto.accounts.BalanceDTO;
 import com.ironhack.bankingsystem.enums.Status;
 import com.ironhack.bankingsystem.model.account.Account;
@@ -19,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class AccountController {
+public class AccountController implements IAccountController {
 
     @Autowired
     private AccountRepository accountRepository;

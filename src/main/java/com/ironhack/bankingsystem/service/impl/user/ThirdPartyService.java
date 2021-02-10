@@ -7,12 +7,13 @@ import com.ironhack.bankingsystem.model.account.Account;
 import com.ironhack.bankingsystem.model.user.ThirdParty;
 import com.ironhack.bankingsystem.repository.accounts.AccountRepository;
 import com.ironhack.bankingsystem.repository.user.ThirdPartyRepository;
+import com.ironhack.bankingsystem.service.interfaces.user.IThirdPartyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ThirdPartyService {
+public class ThirdPartyService implements IThirdPartyService {
 
     @Autowired
     private ThirdPartyRepository thirdPartyRepository;

@@ -1,8 +1,6 @@
 package com.ironhack.bankingsystem.model.account;
 
 import com.ironhack.bankingsystem.enums.Status;
-import com.ironhack.bankingsystem.exceptions.IncorrectCreditLimit;
-import com.ironhack.bankingsystem.exceptions.IncorrectInterestRate;
 import com.ironhack.bankingsystem.model.user.AccountHolder;
 import com.ironhack.bankingsystem.utils.Money;
 

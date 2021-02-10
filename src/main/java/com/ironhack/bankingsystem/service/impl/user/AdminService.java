@@ -17,6 +17,7 @@ import com.ironhack.bankingsystem.repository.user.AccountHolderRepository;
 import com.ironhack.bankingsystem.repository.user.RoleRepository;
 import com.ironhack.bankingsystem.repository.user.ThirdPartyRepository;
 import com.ironhack.bankingsystem.repository.user.UserRepository;
+import com.ironhack.bankingsystem.service.interfaces.user.IAdminService;
 import com.ironhack.bankingsystem.utils.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ import java.util.Set;
 
 
 @Service
-public class AdminService {
+public class AdminService implements IAdminService {
     @Autowired
     private AccountRepository accountRepository;
     @Autowired
@@ -39,11 +40,7 @@ public class AdminService {
     @Autowired
     private StudentCheckingRepository studentCheckingRepository;
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
     private ThirdPartyRepository thirdPartyRepository;
-    @Autowired
-    private RoleRepository roleRepository;
 
     public Savings createSavingAccount(SavingDTO savingdto) {
         AccountHolder primaryOwner = accountHolderRepository

@@ -1,5 +1,6 @@
 package com.ironhack.bankingsystem.controller.impl.accounts;
 
+import com.ironhack.bankingsystem.controller.interfaces.accounts.ITransactionController;
 import com.ironhack.bankingsystem.dto.accounts.TransactionDTO;
 import com.ironhack.bankingsystem.service.impl.accounts.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-public class TransactionController {
+public class TransactionController implements ITransactionController {
 
     @Autowired
     private TransactionService transactionService;

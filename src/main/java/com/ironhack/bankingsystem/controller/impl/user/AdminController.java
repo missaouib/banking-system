@@ -1,6 +1,7 @@
 package com.ironhack.bankingsystem.controller.impl.user;
 
 
+import com.ironhack.bankingsystem.controller.interfaces.user.IAdminController;
 import com.ironhack.bankingsystem.dto.accounts.*;
 import com.ironhack.bankingsystem.dto.user.ThirdPartyDTO;
 import com.ironhack.bankingsystem.enums.Status;
@@ -18,7 +19,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/v1/admin")
-public class AdminController {
+public class AdminController implements IAdminController {
 
     @Autowired
     private AdminService adminService;

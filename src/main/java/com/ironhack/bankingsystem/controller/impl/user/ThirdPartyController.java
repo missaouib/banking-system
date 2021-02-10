@@ -1,5 +1,6 @@
 package com.ironhack.bankingsystem.controller.impl.user;
 
+import com.ironhack.bankingsystem.controller.interfaces.user.IThirdPartyController;
 import com.ironhack.bankingsystem.dto.user.ThirdPartyTransactionDTO;
 import com.ironhack.bankingsystem.model.user.User;
 import com.ironhack.bankingsystem.service.impl.user.ThirdPartyService;
@@ -13,7 +14,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/v1/thirdparty")
-public class ThirdPartyController {
+public class ThirdPartyController implements IThirdPartyController {
 
     @Autowired
     private ThirdPartyService thirdPartyService;
@@ -32,6 +33,5 @@ public class ThirdPartyController {
         thirdPartyTransactiondto.setHashedKey(hashedKey);
         thirdPartyService.receiveMoney(thirdPartyTransactiondto,user);
     }
-
 
 }

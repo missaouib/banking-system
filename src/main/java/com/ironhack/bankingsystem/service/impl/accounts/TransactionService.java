@@ -12,6 +12,7 @@ import com.ironhack.bankingsystem.model.transaction.Transaction;
 import com.ironhack.bankingsystem.model.user.User;
 import com.ironhack.bankingsystem.repository.accounts.*;
 import com.ironhack.bankingsystem.repository.transaction.TransactionRepository;
+import com.ironhack.bankingsystem.service.interfaces.accounts.ITransactionService;
 import com.ironhack.bankingsystem.utils.Money;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,7 +26,7 @@ import java.time.temporal.TemporalUnit;
 import java.util.List;
 
 @Service
-public class TransactionService {
+public class TransactionService implements ITransactionService {
 
     @Autowired
     private AccountRepository accountRepository;
