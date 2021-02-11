@@ -25,6 +25,7 @@ public class ThirdPartyService implements IThirdPartyService {
 
         Account account = validateData(thirdPartyTransactiondto, user);
         account.getBalance().increaseAmount(thirdPartyTransactiondto.getAmount());
+        accountRepository.save(account);
 
     }
 
@@ -34,7 +35,6 @@ public class ThirdPartyService implements IThirdPartyService {
         if (account.getBalance().getAmount().compareTo(thirdPartyTransactiondto.getAmount()) < 0) {
             throw new InsufficientFunds();
         }
-
         account.getBalance().decreaseAmount(thirdPartyTransactiondto.getAmount());
         accountRepository.save(account);
     }
