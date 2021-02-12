@@ -7,6 +7,7 @@ import com.ironhack.bankingsystem.utils.Money;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
@@ -69,5 +70,18 @@ public class Checking extends Account {
 
     public void setMonthlyMaintenanceFee(BigDecimal monthlyMaintenanceFee) {
         this.monthlyMaintenanceFee = monthlyMaintenanceFee;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Checking checking = (Checking) o;
+        return secretKey.equals(checking.secretKey) && minimumBalance.equals(checking.minimumBalance) && monthlyMaintenanceFee.equals(checking.monthlyMaintenanceFee);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), secretKey, minimumBalance, monthlyMaintenanceFee);
     }
 }
