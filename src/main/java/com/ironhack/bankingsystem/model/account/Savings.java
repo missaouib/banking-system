@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Objects;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
@@ -87,5 +88,18 @@ public class Savings  extends Account {
 
     public void setInterestRate(BigDecimal interestRate) {
         this.interestRate = interestRate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Savings savings = (Savings) o;
+        return secretKey.equals(savings.secretKey) && minimumBalance.equals(savings.minimumBalance) && interestRate.equals(savings.interestRate) && paidInterestRate.equals(savings.paidInterestRate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(secretKey, minimumBalance, interestRate, paidInterestRate);
     }
 }

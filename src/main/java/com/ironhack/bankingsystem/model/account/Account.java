@@ -14,6 +14,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -155,4 +156,16 @@ public abstract class Account {
         this.destinationTransactions = destinationTransactions;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Account account = (Account) o;
+        return id.equals(account.id) && balance.equals(account.balance) && primaryOwner.equals(account.primaryOwner) && secondaryOwner.equals(account.secondaryOwner) && penaltyFee.equals(account.penaltyFee) && creationDate.equals(account.creationDate) && status == account.status;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, balance, primaryOwner, secondaryOwner, penaltyFee, creationDate, status);
+    }
 }

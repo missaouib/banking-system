@@ -3,6 +3,7 @@ import javax.persistence.Embeddable;
 import java.math.RoundingMode;
 import java.math.BigDecimal;
 import java.util.Currency;
+import java.util.Objects;
 
 @Embeddable
 public class Money {
@@ -74,5 +75,18 @@ public class Money {
 
     public String toString() {
         return getCurrency().getSymbol() + " " + getAmount();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Money money = (Money) o;
+        return currency.equals(money.currency) && amount.equals(money.amount);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(currency, amount);
     }
 }

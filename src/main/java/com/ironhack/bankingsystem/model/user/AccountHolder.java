@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
@@ -86,5 +87,18 @@ public class AccountHolder extends User {
 
     public void setSecondOwnerAccounts(List<Account> secondOwnerAccounts) {
         this.secondOwnerAccounts = secondOwnerAccounts;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AccountHolder that = (AccountHolder) o;
+        return dateOfBirth.equals(that.dateOfBirth) && address.equals(that.address) && mailingAddress.equals(that.mailingAddress);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(dateOfBirth, address, mailingAddress);
     }
 }

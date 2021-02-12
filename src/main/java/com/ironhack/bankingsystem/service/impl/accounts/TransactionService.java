@@ -45,8 +45,8 @@ public class TransactionService implements ITransactionService {
 
 
         receiver.isOwnedBy(transactionDto.getNameOwner());
-        fraudDetectionInDay(origin);
         fraudDetectionBySeconds(origin);
+        fraudDetectionInDay(origin);
         origin.checkFrozen();
 
         if (origin.getBalance().getAmount().compareTo(transactionDto.getAmount()) < 0) {
@@ -70,7 +70,6 @@ public class TransactionService implements ITransactionService {
     }
 
     public void fraudDetectionInDay(Account account) {
-
         Object[][] maxOperations = transactionRepository.getMaximumTransactionInDay();
         if (maxOperations != null && maxOperations.length > 0) {
             Object[][] userOperations = transactionRepository.getTransactionByOriginAccount(account.getId());
@@ -83,13 +82,13 @@ public class TransactionService implements ITransactionService {
     }
 
     public void fraudDetectionBySeconds(Account account) {
-
         List<Transaction> transactions = account.getOriginTransactions();
-        Transaction lastTransaction = transactions.get(transactions.size() - 1);
-        if (lastTransaction.getCreationDate().until(LocalDateTime.now(), ChronoUnit.MILLIS) < 1000) {
-            freezeAccount(account);
+        if ( transactions!= null && transactions.size() > 0) {
+            Transaction lastTransaction = transactions.get(transactions.size() - 1);
+            if (lastTransaction.getCreationDate().until(LocalDateTime.now(), ChronoUnit.MILLIS) < 1000) {
+                freezeAccount(account);
+            }
         }
-
     }
 
     /**
