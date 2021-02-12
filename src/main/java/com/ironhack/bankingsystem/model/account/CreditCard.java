@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Objects;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
@@ -72,5 +73,18 @@ public class CreditCard extends Account {
 
     public void setInterestRate(BigDecimal interestRate) {
         this.interestRate = interestRate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CreditCard that = (CreditCard) o;
+        return creditLimit.equals(that.creditLimit) && interestRate.equals(that.interestRate) && paidInterestRate.equals(that.paidInterestRate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), creditLimit, interestRate, paidInterestRate);
     }
 }
