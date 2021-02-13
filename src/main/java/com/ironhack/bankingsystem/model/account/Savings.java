@@ -27,11 +27,6 @@ public class Savings  extends Account {
     public Savings() {
     }
 
-    public Savings(String secretKey, BigDecimal minimumBalance, BigDecimal interestRate) {
-        this.secretKey = secretKey;
-        this.minimumBalance = minimumBalance;
-        this.interestRate = interestRate;
-    }
 
     public Savings(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, String secretKey) {
         super(balance, primaryOwner, secondaryOwner,  Status.ACTIVE);

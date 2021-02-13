@@ -120,10 +120,6 @@ public abstract class Account {
         return secondaryOwner;
     }
 
-    public void setSecondaryOwner(AccountHolder secondaryOwner) {
-        this.secondaryOwner = secondaryOwner;
-    }
-
     public BigDecimal getPenaltyFee() {
         return penaltyFee;
     }
@@ -150,10 +146,6 @@ public abstract class Account {
 
     public List<Transaction> getDestinationTransactions() {
         return destinationTransactions;
-    }
-
-    public void setDestinationTransactions(List<Transaction> destinationTransactions) {
-        this.destinationTransactions = destinationTransactions;
     }
 
     @Override

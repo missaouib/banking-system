@@ -52,10 +52,6 @@ public class Checking extends Account {
         return secretKey;
     }
 
-    public void setSecretKey(String secretKey) {
-        this.secretKey = secretKey;
-    }
-
     public BigDecimal getMinimumBalance() {
         return minimumBalance;
     }
