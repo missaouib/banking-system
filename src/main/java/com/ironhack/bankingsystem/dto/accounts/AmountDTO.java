@@ -20,7 +20,4 @@ public class AmountDTO {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
 }

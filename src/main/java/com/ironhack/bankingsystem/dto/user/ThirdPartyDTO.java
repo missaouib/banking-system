@@ -25,16 +25,8 @@ public class ThirdPartyDTO {
         return hashedKey;
     }
 
-    public void setHashedKey(String hashedKey) {
-        this.hashedKey = hashedKey;
-    }
-
     public String getUsername() {
         return username;
-    }
-
-    public void setUsername(String name) {
-        this.username = name;
     }
 
     public String getPassword() {

@@ -25,7 +25,4 @@ public class TransactionController implements ITransactionController {
     public void makeTransaction (@AuthenticationPrincipal UserDetails user ,@RequestBody @Valid TransactionDTO transactiondto){
         transactionService.transferMoney(transactiondto,user);
     }
-
-
-
 }

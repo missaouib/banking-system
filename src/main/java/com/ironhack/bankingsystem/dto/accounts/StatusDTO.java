@@ -9,13 +9,6 @@ public class StatusDTO {
     @NotNull
     private String status;
 
-    public StatusDTO() {
-    }
-
-    public StatusDTO(@NotNull String status) {
-        this.status = status;
-    }
-
     public String getStatus() {
         return status;
     }

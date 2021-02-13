@@ -48,11 +48,6 @@ public class AccountHolder extends User {
         return age > 24;
     }
 
-
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
@@ -63,30 +58,6 @@ public class AccountHolder extends User {
 
     public void setAddress(Address address) {
         this.address = address;
-    }
-
-    public Address getMailingAddress() {
-        return mailingAddress;
-    }
-
-    public void setMailingAddress(Address mailingAddress) {
-        this.mailingAddress = mailingAddress;
-    }
-
-    public List<Account> getPrimaryOwnerAccounts() {
-        return primaryOwnerAccounts;
-    }
-
-    public void setPrimaryOwnerAccounts(List<Account> primaryOwnerAccounts) {
-        this.primaryOwnerAccounts = primaryOwnerAccounts;
-    }
-
-    public List<Account> getSecondOwnerAccounts() {
-        return secondOwnerAccounts;
-    }
-
-    public void setSecondOwnerAccounts(List<Account> secondOwnerAccounts) {
-        this.secondOwnerAccounts = secondOwnerAccounts;
     }
 
     @Override

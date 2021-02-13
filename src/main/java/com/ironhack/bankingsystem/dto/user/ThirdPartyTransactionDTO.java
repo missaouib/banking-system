@@ -34,10 +34,6 @@ public class ThirdPartyTransactionDTO {
         return thirdPartyId;
     }
 
-    public void setThirdPartyId(Integer thirdPartyId) {
-        this.thirdPartyId = thirdPartyId;
-    }
-
     public String getHashedKey() {
         return hashedKey;
     }
@@ -56,17 +52,5 @@ public class ThirdPartyTransactionDTO {
 
     public BigDecimal getAmount() {
         return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public String getAccountSecretKey() {
-        return accountSecretKey;
-    }
-
-    public void setAccountSecretKey(String accountSecretKey) {
-        this.accountSecretKey = accountSecretKey;
     }
 }

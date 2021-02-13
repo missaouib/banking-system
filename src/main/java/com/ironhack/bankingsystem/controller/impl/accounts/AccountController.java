@@ -33,7 +33,7 @@ public class AccountController implements IAccountController {
         return accountService.viewAccountsById(accountHolderId);
     }
 
-    @GetMapping("/v1/accounts/{status}")
+    @GetMapping("/v1/accounts/{status}/status")
     @ResponseStatus(HttpStatus.OK)
     public List<Account> findByStatus(@PathVariable(name = "status") String status) {
         return accountService.findByStatus(Status.valueOf(status.toUpperCase()));

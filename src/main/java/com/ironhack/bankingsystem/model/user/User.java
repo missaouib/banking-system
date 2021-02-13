@@ -38,7 +38,7 @@ public abstract class User {
         return username;
     }
 
-    public void setUsername(String name) {
+    public void setUsername(String username) {
         this.username = username;
     }
 

@@ -35,7 +35,7 @@ public class AdminController implements IAdminController {
         return adminService.createCreditCardAccount(creditCarddto);
     }
 
-    @PostMapping("/checkingaccount")
+    @PostMapping("/checking")
     @ResponseStatus(HttpStatus.CREATED)
     public Account createCheckingOrStudentCheckingAccount(@RequestBody @Valid CheckingDTO checkingDTO) {
         return adminService.createCheckingAccountOrCheckingStudent(checkingDTO);

@@ -6,6 +6,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class CheckingDTO {
 
@@ -43,39 +44,32 @@ public class CheckingDTO {
         return primaryOwnerId;
     }
 
-    public void setPrimaryOwnerId(Integer primaryOwnerId) {
-        this.primaryOwnerId = primaryOwnerId;
-    }
-
     public Integer getSecondaryOwnerId() {
         return secondaryOwnerId;
-    }
-
-    public void setSecondaryOwnerId(Integer secondaryOwnerId) {
-        this.secondaryOwnerId = secondaryOwnerId;
     }
 
     public String getSecretKey() {
         return secretKey;
     }
 
-    public void setSecretKey(String secretKey) {
-        this.secretKey = secretKey;
-    }
-
     public BigDecimal getMinimumBalance() {
         return minimumBalance;
-    }
-
-    public void setMinimumBalance(BigDecimal minimumBalance) {
-        this.minimumBalance = minimumBalance;
     }
 
     public BigDecimal getMonthlyMaintenanceFee() {
         return monthlyMaintenanceFee;
     }
 
-    public void setMonthlyMaintenanceFee(BigDecimal monthlyMaintenanceFee) {
-        this.monthlyMaintenanceFee = monthlyMaintenanceFee;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CheckingDTO that = (CheckingDTO) o;
+        return Objects.equals(balance, that.balance) && Objects.equals(primaryOwnerId, that.primaryOwnerId) && Objects.equals(secondaryOwnerId, that.secondaryOwnerId) && Objects.equals(secretKey, that.secretKey) && Objects.equals(minimumBalance, that.minimumBalance) && Objects.equals(monthlyMaintenanceFee, that.monthlyMaintenanceFee);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(balance, primaryOwnerId, secondaryOwnerId, secretKey, minimumBalance, monthlyMaintenanceFee);
     }
 }

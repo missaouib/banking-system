@@ -47,31 +47,7 @@ public class Transaction {
         return creationDate;
     }
 
-    public void setCreationDate(LocalDateTime creationDate) {
-        this.creationDate = creationDate;
-    }
-
     public Money getAmount() {
         return amount;
-    }
-
-    public void setAmount(Money amount) {
-        this.amount = amount;
-    }
-
-    public Account getOrigin() {
-        return origin;
-    }
-
-    public void setOrigin(Account origin) {
-        this.origin = origin;
-    }
-
-    public Account getDestination() {
-        return destination;
-    }
-
-    public void setDestination(Account destination) {
-        this.destination = destination;
     }
 }

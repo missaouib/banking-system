@@ -19,6 +19,4 @@ public interface TransactionRepository extends JpaRepository<Transaction, Intege
             "and origin_account_id = :accountId group by origin_account_id, DAY(creation_date) LIMIT 1",nativeQuery = true)
     public Object[][] getTransactionByOriginAccount(Integer accountId);
 
-
-
 }

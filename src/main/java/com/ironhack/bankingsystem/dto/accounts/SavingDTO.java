@@ -4,6 +4,7 @@ import com.ironhack.bankingsystem.utils.Money;
 
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class SavingDTO {
 
@@ -40,39 +41,32 @@ public class SavingDTO {
         return primaryOwnerId;
     }
 
-    public void setPrimaryOwnerId(Integer primaryOwnerId) {
-        this.primaryOwnerId = primaryOwnerId;
-    }
-
     public Integer getSecondaryOwnerId() {
         return secondaryOwnerId;
-    }
-
-    public void setSecondaryOwnerId(Integer secondaryOwnerId) {
-        this.secondaryOwnerId = secondaryOwnerId;
     }
 
     public String getSecretKey() {
         return secretKey;
     }
 
-    public void setSecretKey(String secretKey) {
-        this.secretKey = secretKey;
-    }
-
     public BigDecimal getMinimumBalance() {
         return minimumBalance;
-    }
-
-    public void setMinimumBalance(BigDecimal minimumBalance) {
-        this.minimumBalance = minimumBalance;
     }
 
     public BigDecimal getInterestRate() {
         return interestRate;
     }
 
-    public void setInterestRate(BigDecimal interestRate) {
-        this.interestRate = interestRate;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SavingDTO savingDTO = (SavingDTO) o;
+        return Objects.equals(balance, savingDTO.balance) && Objects.equals(primaryOwnerId, savingDTO.primaryOwnerId) && Objects.equals(secondaryOwnerId, savingDTO.secondaryOwnerId) && Objects.equals(secretKey, savingDTO.secretKey) && Objects.equals(minimumBalance, savingDTO.minimumBalance) && Objects.equals(interestRate, savingDTO.interestRate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(balance, primaryOwnerId, secondaryOwnerId, secretKey, minimumBalance, interestRate);
     }
 }

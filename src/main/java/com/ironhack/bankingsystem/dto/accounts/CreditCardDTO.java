@@ -32,24 +32,12 @@ public class CreditCardDTO {
         return balance;
     }
 
-    public void setBalance(Money balance) {
-        this.balance = balance;
-    }
-
     public Integer getPrimaryOwnerId() {
         return primaryOwnerId;
     }
 
-    public void setPrimaryOwnerId(Integer primaryOwnerId) {
-        this.primaryOwnerId = primaryOwnerId;
-    }
-
     public Integer getSecondaryOwnerId() {
         return secondaryOwnerId;
-    }
-
-    public void setSecondaryOwnerId(Integer secondaryOwnerId) {
-        this.secondaryOwnerId = secondaryOwnerId;
     }
 
 
@@ -57,15 +45,7 @@ public class CreditCardDTO {
         return creditLimit;
     }
 
-    public void setCreditLimit(BigDecimal creditLimit) {
-        this.creditLimit = creditLimit;
-    }
-
     public BigDecimal getInterestRate() {
         return interestRate;
-    }
-
-    public void setInterestRate(BigDecimal interestRate) {
-        this.interestRate = interestRate;
     }
 }
