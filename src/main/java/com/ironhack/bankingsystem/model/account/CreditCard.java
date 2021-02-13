@@ -27,6 +27,11 @@ public class CreditCard extends Account {
     public CreditCard() {
     }
 
+    public CreditCard(BigDecimal creditLimit, BigDecimal interestRate) {
+        this.creditLimit = creditLimit;
+        this.interestRate = interestRate;
+    }
+
     public CreditCard(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner) {
         super(balance, primaryOwner, secondaryOwner, Status.ACTIVE);
         setPaidInterestRate(getCreationDate());
@@ -54,8 +59,16 @@ public class CreditCard extends Account {
         this.paidInterestRate = paidInterestRate;
     }
 
+    public BigDecimal getCreditLimit() {
+        return creditLimit;
+    }
+
     public void setCreditLimit(BigDecimal creditLimit) {
         this.creditLimit = creditLimit;
+    }
+
+    public BigDecimal getInterestRate() {
+        return interestRate;
     }
 
     public void setInterestRate(BigDecimal interestRate) {

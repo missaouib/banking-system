@@ -47,8 +47,25 @@ public class Checking extends Account {
         }
     }
 
+
+    public String getSecretKey() {
+        return secretKey;
+    }
+
+    public void setSecretKey(String secretKey) {
+        this.secretKey = secretKey;
+    }
+
+    public BigDecimal getMinimumBalance() {
+        return minimumBalance;
+    }
+
     public void setMinimumBalance(BigDecimal minimumBalance) {
         this.minimumBalance = minimumBalance;
+    }
+
+    public BigDecimal getMonthlyMaintenanceFee() {
+        return monthlyMaintenanceFee;
     }
 
     public void setMonthlyMaintenanceFee(BigDecimal monthlyMaintenanceFee) {

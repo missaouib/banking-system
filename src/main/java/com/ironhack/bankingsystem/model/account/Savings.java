@@ -66,6 +66,18 @@ public class Savings  extends Account {
         this.paidInterestRate = paidInterestRate;
     }
 
+    public String getSecretKey() {
+        return secretKey;
+    }
+
+    public void setSecretKey(String secretKey) {
+        this.secretKey = secretKey;
+    }
+
+    public BigDecimal getMinimumBalance() {
+        return minimumBalance;
+    }
+
     public void setMinimumBalance(BigDecimal minimumBalance) {
         this.minimumBalance = minimumBalance;
     }

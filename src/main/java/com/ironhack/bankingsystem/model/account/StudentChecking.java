@@ -20,8 +20,20 @@ public class StudentChecking extends Account {
     public StudentChecking() {
     }
 
+    public StudentChecking(String secretKey) {
+        this.secretKey = secretKey;
+    }
+
     public StudentChecking(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, String secretKey) {
         super(balance, primaryOwner, secondaryOwner, Status.ACTIVE);
+        this.secretKey = secretKey;
+    }
+
+    public String getSecretKey() {
+        return secretKey;
+    }
+
+    public void setSecretKey(String secretKey) {
         this.secretKey = secretKey;
     }
 
