@@ -6,6 +6,7 @@
 * [How to run project](#run)
 * [API](#api)
 * [Database Design](#database)
+* [Use Case Diagram](#casediagram)
 
 
 
@@ -78,3 +79,6 @@ http://localhost:8080/swagger-ui.html#/
 
 ![Database Design](https://github.com/nereagarcia12/banking-system/blob/master/src/main/resources/images/databasediagram.png)
 
+## <a name=casediagram> Use Case Diagram  </a>
+
+![Use Case Diagram](https://github.com/nereagarcia12/banking-system/blob/master/src/main/resources/images/CaseDiagram.png)
