@@ -21,16 +21,4 @@ public class AmountDTO {
         return amount;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        AmountDTO amountDTO = (AmountDTO) o;
-        return Objects.equals(amount, amountDTO.amount);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(amount);
-    }
 }

@@ -13,7 +13,7 @@ public class TransactionDTO {
     @NotNull
     private Integer receiverAccountId;
     @NotNull
-    @Min(value = 0,message = "Amount should grater than 0")
+    @Min(value = 0, message = "Amount should grater than 0")
     private BigDecimal amount;
     @NotEmpty
     private String nameOwner;
@@ -29,32 +29,16 @@ public class TransactionDTO {
         return originAccountId;
     }
 
-    public void setOriginAccountId(Integer originAccountId) {
-        this.originAccountId = originAccountId;
-    }
-
     public Integer getReceiverAccountId() {
         return receiverAccountId;
-    }
-
-    public void setReceiverAccountId(Integer receiverAccountId) {
-        this.receiverAccountId = receiverAccountId;
     }
 
     public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
     public String getNameOwner() {
         return nameOwner;
-    }
-
-    public void setNameOwner(String nameOwner) {
-        this.nameOwner = nameOwner;
     }
 
     @Override

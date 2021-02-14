@@ -58,17 +58,4 @@ public class ThirdPartyTransactionDTO {
     public String getAccountSecretKey() {
         return accountSecretKey;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ThirdPartyTransactionDTO that = (ThirdPartyTransactionDTO) o;
-        return Objects.equals(thirdPartyId, that.thirdPartyId) && Objects.equals(hashedKey, that.hashedKey) && Objects.equals(accountId, that.accountId) && Objects.equals(amount, that.amount) && Objects.equals(accountSecretKey, that.accountSecretKey);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(thirdPartyId, hashedKey, accountId, amount, accountSecretKey);
-    }
 }

@@ -19,7 +19,7 @@ public class ApiExceptionHandler {
         response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, frozenAccount.getMessage());
     }
     @ExceptionHandler(HashedKeyIncorrect.class)
-    public void frozenAccount(HashedKeyIncorrect hashedKeyIncorrect, HttpServletResponse response) throws IOException {
+    public void hashedKeyIncorrect(HashedKeyIncorrect hashedKeyIncorrect, HttpServletResponse response) throws IOException {
         response.sendError(HttpServletResponse.SC_FORBIDDEN, hashedKeyIncorrect.getMessage());
     }
 

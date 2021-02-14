@@ -73,10 +73,6 @@ public class Money {
         this.amount = amount;
     }
 
-    public String toString() {
-        return getCurrency().getSymbol() + " " + getAmount();
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

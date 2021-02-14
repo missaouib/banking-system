@@ -27,7 +27,6 @@ public class CreditCard extends Account {
     public CreditCard() {
     }
 
-
     public CreditCard(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner) {
         super(balance, primaryOwner, secondaryOwner, Status.ACTIVE);
         setPaidInterestRate(getCreationDate());
