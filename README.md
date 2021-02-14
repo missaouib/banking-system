@@ -1,11 +1,20 @@
 # Banking-system
 
-## Main Objective
+* [Objetive](#objetive)
+* [Technologies](#technologies)
+* [Test](#test)
+* [How to run project](#run)
+* [API](#api)
+* [Database Design](#database)
+
+
+
+## <a name=objective> Main Objective <a/> 
 This application simulates a bank, in it we will have access to different accounts (credit card, savings account, checking account, student account). We can make transfers between accounts, collect commissions or interest and make penalties.
 
 It also has different roles, an Admin role, an account holder role, and a third party role.
 
-## Technologies
+## <a name=technologies> Technologies </a>
 
 This project is done with Spring Boot 2.4 and the following libraries :
 
@@ -20,7 +29,7 @@ This project is done with Spring Boot 2.4 and the following libraries :
 We use maven for dependency management.
 
 
-## Test
+## <a name=test> Test </a>
 The coverage of the project are
 
 ![Test Coverage](https://github.com/nereagarcia12/banking-system/blob/master/src/main/resources/images/coverage.png)
@@ -32,7 +41,7 @@ We use JUnit, Mockito and MockMVC, we do different test by a layer:
 - Unit testing for different objects and classes with JUnit.
   
 
-## How to run the project
+## <a name=run> How to run the project</a>
 You need a Mysql database and maven installed in your system.
 
 First of all you should create a banking_system database with the following sentences:
@@ -53,7 +62,7 @@ mvnw spring-boot:run
 ```
 Or with run of your IDE.
 
-## API
+## <a name=api> API </a>
 You can access to all the examples in Postman with the next Postman collection:
 https://www.getpostman.com/collections/e09115d57bc84543432b
 
@@ -65,7 +74,7 @@ http://localhost:8080/swagger-ui.html#/
 
 ![Swagger](https://github.com/nereagarcia12/banking-system/blob/master/src/main/resources/images/swagger.png)
 
-## Database Design
+## <a name=database> Database Design </a>
 
 ![Database Design](https://github.com/nereagarcia12/banking-system/blob/master/src/main/resources/images/databasediagram.png)
 
