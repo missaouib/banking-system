@@ -56,13 +56,16 @@ Or with run of your IDE.
 ## API
 You can access to all the examples in Postman with the next Postman collection:
 https://www.getpostman.com/collections/e09115d57bc84543432b
+
 ![Postman](https://github.com/nereagarcia12/banking-system/blob/master/src/main/resources/images/postman.png)
 
 
 You also can access to Swagger when the server is started in the next url:
 http://localhost:8080/swagger-ui.html#/
+
 ![Swagger](https://github.com/nereagarcia12/banking-system/blob/master/src/main/resources/images/swagger.png)
 
 ## Database Design
+
 ![Database Design](https://github.com/nereagarcia12/banking-system/blob/master/src/main/resources/images/databasediagram.png)
 
