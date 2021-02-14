@@ -2,6 +2,7 @@ package com.ironhack.bankingsystem.dto.user;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 public class ThirdPartyDTO {
 
@@ -35,5 +36,18 @@ public class ThirdPartyDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ThirdPartyDTO that = (ThirdPartyDTO) o;
+        return Objects.equals(hashedKey, that.hashedKey) && Objects.equals(username, that.username) && Objects.equals(password, that.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(hashedKey, username, password);
     }
 }

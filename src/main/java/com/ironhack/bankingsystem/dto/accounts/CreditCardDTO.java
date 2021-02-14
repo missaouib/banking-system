@@ -4,6 +4,7 @@ import com.ironhack.bankingsystem.utils.Money;
 
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class CreditCardDTO {
 
@@ -47,5 +48,18 @@ public class CreditCardDTO {
 
     public BigDecimal getInterestRate() {
         return interestRate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CreditCardDTO that = (CreditCardDTO) o;
+        return Objects.equals(balance, that.balance) && Objects.equals(primaryOwnerId, that.primaryOwnerId) && Objects.equals(secondaryOwnerId, that.secondaryOwnerId) && Objects.equals(creditLimit, that.creditLimit) && Objects.equals(interestRate, that.interestRate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(balance, primaryOwnerId, secondaryOwnerId, creditLimit, interestRate);
     }
 }
