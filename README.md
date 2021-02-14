@@ -1,6 +1,6 @@
 # Banking-system
 
-##Technologies
+## Technologies
 
 This project is done with Spring Boot 2.4 and the following libraries :
 
