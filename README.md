@@ -1,5 +1,10 @@
 # Banking-system
 
+## Main Objective
+This application simulates a bank, in it we will have access to different accounts (credit card, savings account, checking account, student account). We can make transfers between accounts, collect commissions or interest and make penalties.
+
+It also has different roles, an Admin role, an account holder role, and a third party role.
+
 ## Technologies
 
 This project is done with Spring Boot 2.4 and the following libraries :
@@ -18,6 +23,7 @@ We use maven for dependency management.
 ## Test
 The coverage of the project are
 
+![Test Coverage](https://github.com/nereagarcia12/banking-system/blob/master/src/main/resources/images/coverage.png)
 
 We use JUnit, Mockito and MockMVC, we do different test by a layer:
 - Controller: I test the contract, the endpoints urls, mocking the service. We use with MockMvc, mockito and Junit.
@@ -50,8 +56,13 @@ Or with run of your IDE.
 ## API
 You can access to all the examples in Postman with the next Postman collection:
 https://www.getpostman.com/collections/e09115d57bc84543432b
+![Postman](https://github.com/nereagarcia12/banking-system/blob/master/src/main/resources/images/postman.png)
 
 
 You also can access to Swagger when the server is started in the next url:
 http://localhost:8080/swagger-ui.html#/
+![Swagger](https://github.com/nereagarcia12/banking-system/blob/master/src/main/resources/images/swagger.png)
+
+## Database Design
+![Database Design](https://github.com/nereagarcia12/banking-system/blob/master/src/main/resources/images/databasediagram.png)
 
