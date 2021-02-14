@@ -1,10 +1,9 @@
 package com.ironhack.bankingsystem.controller.impl.user;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ironhack.bankingsystem.dto.accounts.*;
 import com.ironhack.bankingsystem.dto.user.ThirdPartyDTO;
-import com.ironhack.bankingsystem.model.account.Account;
 import com.ironhack.bankingsystem.model.account.Checking;
 import com.ironhack.bankingsystem.model.account.CreditCard;
 import com.ironhack.bankingsystem.model.account.Savings;
@@ -20,7 +19,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;

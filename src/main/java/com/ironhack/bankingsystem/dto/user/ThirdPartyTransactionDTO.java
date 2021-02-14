@@ -55,6 +55,10 @@ public class ThirdPartyTransactionDTO {
         return amount;
     }
 
+    public String getAccountSecretKey() {
+        return accountSecretKey;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
