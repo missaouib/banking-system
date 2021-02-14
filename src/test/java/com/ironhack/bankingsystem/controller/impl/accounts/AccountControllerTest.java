@@ -82,9 +82,8 @@ class AccountControllerTest {
 
     @Test
     void findByOwnerId_Correct() throws Exception {
-
         String expectedResponse = "[{\"id\":null,\"balance\":{\"currency\":\"USD\",\"amount\":2000.00},\"penaltyFee\":40,\"creationDate\":\"2021-02-13\",\"status\":\"ACTIVE\",\"secretKey\":\"algo\",\"minimumBalance\":250,\"monthlyMaintenanceFee\":12}]";
-        when(accountService.viewAccountsById(1)).thenReturn(List.of(account));
+        when(accountService.viewAccountsByUsername("nerea")).thenReturn(List.of(account));
 
         MvcResult result = mockMvc
                 .perform(get("/v1/accounts/1")
@@ -98,7 +97,6 @@ class AccountControllerTest {
 
     @Test
     void findByStatus_correct() throws Exception {
-
         String expectedResponse = "[{\"id\":null,\"balance\":{\"currency\":\"USD\",\"amount\":2000.00},\"penaltyFee\":40,\"creationDate\":\"2021-02-13\",\"status\":\"ACTIVE\",\"secretKey\":\"algo\",\"minimumBalance\":250,\"monthlyMaintenanceFee\":12}]";
         when(accountService.findByStatus(Status.ACTIVE)).thenReturn(List.of(account));
 

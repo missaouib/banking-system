@@ -13,7 +13,7 @@ public interface IAccountService {
 
     public List<Account> findByStatus(Status status);
 
-    public List<Account> viewAccountsById(Integer accountHolderId);
+    public List<Account> viewAccountsByUsername(String username);
 
     public BalanceDTO checkBalance(Integer accountId, UserDetails user);
 

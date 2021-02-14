@@ -4,6 +4,7 @@ import com.ironhack.bankingsystem.controller.interfaces.accounts.IAccountControl
 import com.ironhack.bankingsystem.dto.accounts.BalanceDTO;
 import com.ironhack.bankingsystem.enums.Status;
 import com.ironhack.bankingsystem.model.account.Account;
+import com.ironhack.bankingsystem.security.CustomUserDetails;
 import com.ironhack.bankingsystem.service.impl.accounts.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,8 +30,8 @@ public class AccountController implements IAccountController {
 
     @GetMapping("/v1/accounts/{accountHolderId}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Account> findByOwnerId(@PathVariable Integer accountHolderId) {
-        return accountService.viewAccountsById(accountHolderId);
+    public List<Account> findAccounts(@AuthenticationPrincipal CustomUserDetails user) {
+        return accountService.viewAccountsByUsername(user.getUsername());
     }
 
     @GetMapping("/v1/accounts/{status}/status")

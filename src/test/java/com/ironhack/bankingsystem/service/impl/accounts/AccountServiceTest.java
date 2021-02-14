@@ -87,18 +87,18 @@ class AccountServiceTest {
     }
 
     @Test
-    void viewAccountsById_NoAccountHolder_Exception() {
-        when(accountHolderRepository.findById(accountHolder.getId())).thenReturn(Optional.empty());
+    void viewAccountsByUsername_NoAccountHolder_Exception() {
+        when(accountHolderRepository.findByUsername(accountHolder.getUsername())).thenReturn(Optional.empty());
 
-        assertThrows(NoPresentAccountHolder.class, () -> accountService.viewAccountsById(accountHolder.getId()));
+        assertThrows(NoPresentAccountHolder.class, () -> accountService.viewAccountsByUsername(accountHolder.getUsername()));
     }
 
     @Test
-    void viewAccountsById_AccountHolder_ListAccount() {
-        when(accountHolderRepository.findById(accountHolder.getId())).thenReturn(Optional.of(accountHolder));
+    void viewAccountsByUsername_AccountHolder_ListAccount() {
+        when(accountHolderRepository.findByUsername(accountHolder.getUsername())).thenReturn(Optional.of(accountHolder));
         when(accountRepository.findByPrimaryOwnerOrSecondaryOwner(accountHolder, accountHolder)).thenReturn(List.of(account));
 
-        List<Account> accounts = accountService.viewAccountsById(accountHolder.getId());
+        List<Account> accounts = accountService.viewAccountsByUsername(accountHolder.getUsername());
 
         assertEquals(List.of(account), accounts);
 
@@ -137,9 +137,9 @@ class AccountServiceTest {
         when(accountRepository.findById(accountSaving.getId())).thenReturn(Optional.of(accountSaving));
         when(accountRepository.save(accountSaving)).thenReturn(accountSaving);
 
-        BalanceDTO responseBalanceDto = accountService.checkBalance(accountSaving.getId(),customUserDetails);
+        BalanceDTO responseBalanceDto = accountService.checkBalance(accountSaving.getId(), customUserDetails);
 
-        assertEquals(expectedBalanceDto,responseBalanceDto);
+        assertEquals(expectedBalanceDto, responseBalanceDto);
 
     }
 
@@ -149,9 +149,9 @@ class AccountServiceTest {
         when(accountRepository.findById(accountCreditCard.getId())).thenReturn(Optional.of(accountCreditCard));
         when(accountRepository.save(accountCreditCard)).thenReturn(accountCreditCard);
 
-        BalanceDTO responseBalanceDto = accountService.checkBalance(accountCreditCard.getId(),customUserDetails);
+        BalanceDTO responseBalanceDto = accountService.checkBalance(accountCreditCard.getId(), customUserDetails);
 
-        assertEquals(expectedBalanceDto,responseBalanceDto);
+        assertEquals(expectedBalanceDto, responseBalanceDto);
 
     }
 }

@@ -36,8 +36,8 @@ public class AccountService implements IAccountService {
         return accountRepository.findByStatus(status);
     }
 
-    public List<Account> viewAccountsById(Integer accountHolderId) {
-        AccountHolder owner = accountHolderRepository.findById(accountHolderId).orElseThrow(NoPresentAccountHolder::new);
+    public List<Account> viewAccountsByUsername(String username) {
+        AccountHolder owner = accountHolderRepository.findByUsername(username).orElseThrow(NoPresentAccountHolder::new);
         return accountRepository.findByPrimaryOwnerOrSecondaryOwner(owner, owner);
 
     }
