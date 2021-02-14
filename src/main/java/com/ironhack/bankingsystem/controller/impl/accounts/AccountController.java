@@ -22,13 +22,13 @@ public class AccountController implements IAccountController {
     @Autowired
     private AccountService accountService;
 
-    @GetMapping("/v1/accounts")
+    @GetMapping("/v1/accounts/all")
     @ResponseStatus(HttpStatus.OK)
     public List<Account> findAll() {
         return accountService.findAll();
     }
 
-    @GetMapping("/v1/accounts/{accountHolderId}")
+    @GetMapping("/v1/accounts")
     @ResponseStatus(HttpStatus.OK)
     public List<Account> findAccounts(@AuthenticationPrincipal CustomUserDetails user) {
         return accountService.viewAccountsByUsername(user.getUsername());

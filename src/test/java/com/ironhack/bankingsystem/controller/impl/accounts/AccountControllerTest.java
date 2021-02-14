@@ -64,6 +64,7 @@ class AccountControllerTest {
         account.setCreationDate(LocalDate.of(2021, 2, 13));
         balanceDto = new BalanceDTO(new Money(new BigDecimal(2000)));
         accountHolder.setRoles(Set.of(new Role("ACCOUNTHOLDER", accountHolder)));
+        accountHolder.setRoles(Set.of(new Role("ADMIN", accountHolder)));
     }
 
     @Test
@@ -72,7 +73,7 @@ class AccountControllerTest {
         when(accountService.findAll()).thenReturn(List.of(account));
 
         MvcResult result = mockMvc
-                .perform(get("/v1/accounts")
+                .perform(get("/v1/accounts/all")
                         .with(user(new CustomUserDetails(accountHolder))))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -86,7 +87,7 @@ class AccountControllerTest {
         when(accountService.viewAccountsByUsername("nerea")).thenReturn(List.of(account));
 
         MvcResult result = mockMvc
-                .perform(get("/v1/accounts/1")
+                .perform(get("/v1/accounts")
                         .with(user(new CustomUserDetails(accountHolder))))
                 .andExpect(status().isOk())
                 .andReturn();
